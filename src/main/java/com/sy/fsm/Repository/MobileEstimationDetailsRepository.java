@@ -30,5 +30,8 @@ public interface MobileEstimationDetailsRepository extends JpaRepository<MobileE
 	
 	@Query(value = "SELECT count(*) FROM getFSMUserIdsBasedEstimationDetailsList(:userIds)", nativeQuery = true)
 	int getFSMUserIdsBasedEstimationDetailsListCount(String userIds);
+	
+	@Query(value = "SELECT * FROM estimation_details Where est_no= :estNo",nativeQuery = true)
+	 Optional<MobileEstimationDetails> findByEstNo(String estNo);
 
 }

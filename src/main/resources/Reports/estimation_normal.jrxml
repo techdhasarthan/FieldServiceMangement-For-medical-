@@ -1,5 +1,5 @@
 <!-- Created with Jaspersoft Studio version 7.0.0.final using JasperReports Library version 7.0.0-b478feaa9aab4375eba71de77b4ca138ad2f62aa  -->
-<jasperReport name="estimation_discount" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c564af6a-fc89-46f5-ac33-f6621ce671af">
+<jasperReport name="estimation_normal" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c564af6a-fc89-46f5-ac33-f6621ce671af">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="estNo" class="java.lang.String">
@@ -82,61 +82,23 @@
 		<property name="com.jaspersoft.studio.field.tree.path" value="estimation_product_details"/>
 	</field>
 	<background splitType="Stretch"/>
-	<title height="249" splitType="Stretch">
-		<element kind="rectangle" uuid="c207a0d1-6bc6-42fc-9f45-acfc9a9a31f2" x="0" y="0" width="555" height="30" backcolor="#9C96C2">
+	<title height="273" splitType="Stretch">
+		<element kind="rectangle" uuid="0f6a0bab-ff05-42df-9b3a-43415904f992" x="0" y="0" width="555" height="30" backcolor="#9C96C2">
 			<pen lineWidth="0.0"/>
 		</element>
-		<element kind="rectangle" uuid="70477526-e89c-49e5-98e0-4a63b9aaeb3f" x="0" y="30" width="555" height="200" radius="0">
+		<element kind="staticText" uuid="d3b9d0b8-f9ec-4642-b5cc-6e07f42b234c" x="0" y="0" width="555" height="30" forecolor="#FFFFFF" backcolor="rgba(59, 103, 235, 0.88235295)" fontName="Britannic Bold" fontSize="14.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Estimation]]></text>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="rectangle" uuid="10e88070-ddf1-4379-bb7a-4c31a4a71630" x="0" y="30" width="555" height="232" radius="0">
 			<pen lineWidth="0.0" lineStyle="Solid" lineColor="#191F5E"/>
 		</element>
-		<element kind="staticText" uuid="4c36e523-c2b8-46d5-9d2e-4b3ef75c123a" x="0" y="30" width="120" height="20" fontName="Arial Black" bold="true" vTextAlign="Middle">
-			<text><![CDATA[EST NO]]></text>
-			<box>
-				<pen lineWidth="0.0" lineColor="#000000"/>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="0d918839-e797-487e-acaa-9a63f738c3e0" x="120" y="30" width="435" height="20" fontName="Algerian" bold="true" vTextAlign="Middle">
-			<expression><![CDATA[":   "+$P{estNO}]]></expression>
-			<box>
-				<pen lineWidth="2.25" lineColor="#5C1311"/>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="staticText" uuid="e594a9cb-caba-4de7-9478-a6f90df6a17e" x="0" y="69" width="120" height="19" fontName="Arial Black" bold="true" vTextAlign="Middle">
-			<text><![CDATA[Customer Name]]></text>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="5a4745ca-bd4b-4453-8552-70c3e8e5171b" x="120" y="69" width="160" height="19" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
-			<expression><![CDATA[":   "+$P{customerName}]]></expression>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="staticText" uuid="fd7f6c59-1853-444f-b128-4f712a9b8696" x="0" y="50" width="120" height="19" fontName="Arial Black" bold="true" vTextAlign="Middle">
-			<text><![CDATA[Date]]></text>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="13476ab1-00e8-42ed-a874-4234773d266f" x="120" y="50" width="160" height="19" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
+		<element kind="textField" uuid="1cafa1de-f7f9-4191-8962-d4df91ac8722" x="120" y="50" width="160" height="19" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
 			<expression><![CDATA[$P{estimationProcessDate} != null ? ": " + $P{estimationProcessDate} : ":"
 ]]></expression>
 			<box>
@@ -146,16 +108,7 @@
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="6175768c-a4af-47be-9cbc-bfad12697fc7" x="280" y="50" width="80" height="19" fontName="Arial Black" bold="true" hTextAlign="Left" vTextAlign="Middle">
-			<text><![CDATA[Rep Attd]]></text>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="686d456b-639d-435b-946f-a2585070f54a" x="360" y="50" width="195" height="19" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
+		<element kind="textField" uuid="3f33b5e8-28a0-4d81-bc72-938f4ef75c6f" x="360" y="50" width="195" height="19" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
 			<expression><![CDATA[":   "+$P{repAttd}]]></expression>
 			<box>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -164,7 +117,7 @@
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="2d9eed8e-f81f-44d9-9612-f78c58f99a51" x="280" y="69" width="80" height="19" fontName="Arial Black" bold="true" hTextAlign="Left" vTextAlign="Middle">
+		<element kind="staticText" uuid="4c9e9d6b-b1c0-4ab2-8a8a-e39d83ee2135" x="280" y="69" width="80" height="19" fontName="Arial Black" bold="true" hTextAlign="Left" vTextAlign="Middle">
 			<text><![CDATA[Rep A/c]]></text>
 			<box>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -173,25 +126,7 @@
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="textField" uuid="6b4ca6e5-d1ba-43a1-903e-0883a15bb66d" x="360" y="69" width="195" height="19" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
-			<expression><![CDATA[":   "+$P{repAcc}]]></expression>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="staticText" uuid="2c8d23d9-a6e9-4846-ad71-09fc1e042118" x="0" y="88" width="120" height="41" fontName="Arial Black" bold="true" vTextAlign="Top">
-			<text><![CDATA[Billing Address]]></text>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="72d903cd-2705-4b8d-b861-26b851f638b0" x="120" y="88" width="160" height="77" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Top">
+		<element kind="textField" uuid="da27b364-8498-4316-91ac-d5dccbbfd5cd" x="120" y="88" width="160" height="77" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Top">
 			<expression><![CDATA[":   "+$P{billingAddress}]]></expression>
 			<box>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -200,16 +135,7 @@
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="4dedfa8d-a1eb-46be-9249-98dda2278c6d" x="280" y="88" width="80" height="41" fontName="Arial Black" bold="true" hTextAlign="Left" vTextAlign="Top">
-			<text><![CDATA[Delivery Address]]></text>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="d281bfc5-fd8c-43e5-862a-2fef1ce95c2b" x="360" y="88" width="195" height="41" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Top">
+		<element kind="textField" uuid="7b60591b-c0db-4d5d-ba49-3b88a84f61ec" x="360" y="88" width="195" height="77" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Top">
 			<expression><![CDATA[":   "+$P{deliveryAddress}]]></expression>
 			<box>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -218,11 +144,8 @@
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="line" uuid="7c93f912-6609-4350-b2af-b56527ce310c" x="0" y="245" width="555" height="1" forecolor="#9D97C3">
-			<pen lineWidth="2.0"/>
-		</element>
-		<element kind="staticText" uuid="c8957883-1f0d-4c7a-8b9c-89b6c9986bf6" x="280" y="198" width="80" height="25" fontName="Arial Black" bold="true" hTextAlign="Left" vTextAlign="Middle">
-			<text><![CDATA[Warrently]]></text>
+		<element kind="staticText" uuid="8d0adb8f-229d-4aae-b461-35cd5d7a4390" x="0" y="50" width="120" height="19" fontName="Arial Black" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Date]]></text>
 			<box>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -230,7 +153,90 @@
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="textField" uuid="b366694e-8e72-4de8-a3a3-b22c9bd902b0" x="360" y="198" width="195" height="25" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
+		<element kind="textField" uuid="0d65ca9d-7a2b-40e5-84c0-3905a21230be" x="360" y="69" width="195" height="19" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<expression><![CDATA[":   "+$P{repAcc}]]></expression>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="textField" uuid="565f7488-48a3-495b-b72c-d56558c959f8" x="120" y="69" width="160" height="19" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<expression><![CDATA[":   "+$P{customerName}]]></expression>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="textField" uuid="f0399922-a11d-49bf-a31d-57fc6918d44b" x="120" y="30" width="435" height="20" fontName="Algerian" bold="true" vTextAlign="Middle">
+			<expression><![CDATA[":   "+$P{estNO}]]></expression>
+			<box>
+				<pen lineWidth="2.25" lineColor="#5C1311"/>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="68e1e351-72a7-422b-b550-d32bef3c61a8" x="280" y="88" width="80" height="77" fontName="Arial Black" bold="true" hTextAlign="Left" vTextAlign="Top">
+			<text><![CDATA[Delivery Address]]></text>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="bb6c99da-3a29-4583-80de-aa6b6d4d1603" x="0" y="88" width="120" height="77" fontName="Arial Black" bold="true" vTextAlign="Top">
+			<text><![CDATA[Billing Address]]></text>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="16aabdec-bf93-43c7-a5bc-2c062b50c912" x="0" y="69" width="120" height="19" fontName="Arial Black" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Customer Name]]></text>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="dd2eff39-08cd-4d78-b006-fff37a4f838b" x="280" y="50" width="80" height="19" fontName="Arial Black" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Rep Attd]]></text>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="ae513e0c-618a-46bf-8e80-01081bc84906" x="0" y="30" width="120" height="20" fontName="Arial Black" bold="true" vTextAlign="Middle">
+			<text><![CDATA[EST NO]]></text>
+			<box>
+				<pen lineWidth="0.0" lineColor="#000000"/>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="727041c7-5bef-4449-9723-3b61fef8228a" x="281" y="168" width="80" height="19" fontName="Arial Black" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[City]]></text>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="textField" uuid="8622d618-7ab2-4f0e-9ade-ecfc13ebb6a9" x="361" y="187" width="195" height="24" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
 			<expression><![CDATA[":   "+$P{warranty}]]></expression>
 			<box>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -239,34 +245,7 @@
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="44118a9a-c697-4973-b1b2-5f3fc0b5a499" x="280" y="172" width="80" height="25" fontName="Arial Black" bold="true" hTextAlign="Left" vTextAlign="Middle">
-			<text><![CDATA[Pin]]></text>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="staticText" uuid="f4f58c2b-1462-4106-9329-b1aaa627f493" x="280" y="148" width="80" height="24" fontName="Arial Black" bold="true" hTextAlign="Left" vTextAlign="Middle">
-			<text><![CDATA[GST/PAN]]></text>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="9fc60862-4438-4e86-91c3-223b87943567" x="360" y="148" width="195" height="24" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
-			<expression><![CDATA[":   "+$P{deliveryPin}]]></expression>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="410ebd61-d471-40c5-86db-0317fc89e621" x="360" y="172" width="195" height="26" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
+		<element kind="textField" uuid="e3d59e27-71b9-49b5-94aa-37f31396a4de" x="361" y="236" width="195" height="26" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
 			<expression><![CDATA[":   "+$P{panGst}]]></expression>
 			<box>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -275,45 +254,7 @@
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="dbfeaab9-580c-4e04-8a4d-2330de4b2603" x="0" y="0" width="555" height="30" forecolor="#FFFFFF" backcolor="rgba(59, 103, 235, 0.88235295)" fontName="Britannic Bold" fontSize="14.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
-			<text><![CDATA[Estimation]]></text>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-	</title>
-	<pageHeader splitType="Stretch">
-		<element kind="staticText" uuid="76019a6f-2f53-45fb-8eec-812f08a21867" x="0" y="-151" width="120" height="19" fontName="Arial Black" bold="true" vTextAlign="Middle">
-			<text><![CDATA[City]]></text>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="staticText" uuid="1d9f000b-7bb8-4070-83ed-c633f80f5e3a" x="0" y="-132" width="120" height="24" fontName="Arial Black" bold="true" vTextAlign="Middle">
-			<text><![CDATA[Phone]]></text>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="d56ca2f5-88a7-401c-b8aa-3ec67cdc24e0" x="120" y="-151" width="160" height="19" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
-			<expression><![CDATA[":   "+$P{billingCity}]]></expression>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="397f421a-c0f1-47dc-ae76-72e05684f429" x="120" y="-132" width="160" height="24" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
+		<element kind="textField" uuid="8d0636f6-e218-41d8-82c8-d692fe71a0f6" x="121" y="187" width="160" height="24" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
 			<expression><![CDATA[":   "+$P{phone}]]></expression>
 			<box>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -322,8 +263,8 @@
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="63c0722f-1529-486d-8a5a-10cdb3a99449" x="0" y="-83" width="120" height="26" fontName="Arial Black" bold="true" vTextAlign="Middle">
-			<text><![CDATA[Pin]]></text>
+		<element kind="staticText" uuid="5644b4fe-4aa1-4dba-9eb4-94407b2bf7b2" x="281" y="236" width="80" height="26" fontName="Arial Black" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[GST/PAN]]></text>
 			<box>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -331,8 +272,8 @@
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="textField" uuid="4b2d2a41-ddfa-4387-9de4-3589dd877e5e" x="120" y="-108" width="160" height="25" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
-			<expression><![CDATA[":   "+$P{billingPin}]]></expression>
+		<element kind="textField" uuid="4981894d-ef19-42e8-a3f5-32c277241458" x="361" y="211" width="195" height="25" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<expression><![CDATA[":   "+$P{deliveryPin}]]></expression>
 			<box>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -340,16 +281,7 @@
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="bad44629-a002-4e0a-be45-1e92e3dcd962" x="0" y="-108" width="120" height="25" fontName="Arial Black" bold="true" vTextAlign="Middle">
-			<text><![CDATA[Email]]></text>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="8c501374-b8bb-4915-83ce-1d1472c1e272" x="120" y="-83" width="160" height="26" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
+		<element kind="textField" uuid="0b557378-ed3d-43aa-9604-f2fa8b9b4d1b" x="121" y="236" width="160" height="26" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
 			<expression><![CDATA[":   "+$P{email}]]></expression>
 			<box>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -358,7 +290,52 @@
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="4103ef76-ae27-4102-884e-271992d37d3d" x="280" y="-151" width="80" height="19" fontName="Arial Black" bold="true" hTextAlign="Left" vTextAlign="Middle">
+		<element kind="staticText" uuid="639f1b33-723a-489e-96d2-53ec895a4880" x="1" y="211" width="120" height="25" fontName="Arial Black" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Email]]></text>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="7146fc34-5940-4cc1-8bd6-fbccdb44a209" x="281" y="211" width="80" height="25" fontName="Arial Black" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Pin]]></text>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="f2a3172d-03ff-4870-a487-ff45af1eeb8e" x="1" y="236" width="120" height="26" fontName="Arial Black" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Pin]]></text>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="textField" uuid="e0e65c6b-e670-4f03-a11e-50d4abf7ef6b" x="121" y="168" width="160" height="19" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<expression><![CDATA[":   "+$P{billingCity}]]></expression>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="8ce1cd3b-1404-4e5f-b2a4-49b0190044bf" x="1" y="187" width="120" height="24" fontName="Arial Black" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Phone]]></text>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="6df61441-1df0-4881-ac48-82f11fd1f0ad" x="1" y="168" width="120" height="19" fontName="Arial Black" bold="true" vTextAlign="Middle">
 			<text><![CDATA[City]]></text>
 			<box>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -367,7 +344,25 @@
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="textField" uuid="f64fd532-e7a8-418e-bcb7-bda50245abaa" x="360" y="-151" width="195" height="19" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
+		<element kind="staticText" uuid="58cf48c3-1048-4aee-a316-5912c8e04783" x="281" y="187" width="80" height="24" fontName="Arial Black" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Warrently]]></text>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="textField" uuid="41a62a71-eb5f-4593-9677-7be67ca6e248" x="121" y="211" width="160" height="25" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<expression><![CDATA[":   "+$P{billingPin}]]></expression>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="textField" uuid="aa5919e3-e11c-41c6-8a38-c23741c70838" x="361" y="168" width="195" height="19" fontName="Algerian" bold="true" hTextAlign="Left" vTextAlign="Middle">
 			<expression><![CDATA[":   "+$P{deliveryCity}]]></expression>
 			<box>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -376,12 +371,16 @@
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-	</pageHeader>
+		<element kind="line" uuid="96ad6fc7-2183-47e8-834e-7b4f5d44c2ca" x="0" y="268" width="555" height="1" forecolor="#9D97C3">
+			<pen lineWidth="2.0"/>
+		</element>
+	</title>
+	<pageHeader splitType="Stretch"/>
 	<columnHeader height="30">
-		<element kind="rectangle" uuid="f6ce8e4e-98b3-4c55-a6cc-ea9ed0b31aaa" x="0" y="6" width="555" height="24" backcolor="#9D97C2">
+		<element kind="rectangle" uuid="f663b0ab-496d-4ffd-a8b9-e523ade19120" x="0" y="6" width="555" height="24" backcolor="#9D97C2">
 			<pen lineWidth="0.0"/>
 		</element>
-		<element kind="staticText" uuid="43adaead-aac2-48b3-a435-a018c72a8639" x="0" y="6" width="34" height="24" forecolor="#FFFFFF" backcolor="#9D97C2" fontName="Britannic Bold" fontSize="11.0" hTextAlign="Center" vTextAlign="Middle">
+		<element kind="staticText" uuid="db7aef6e-3a2e-4532-a721-446ff6982f7a" x="0" y="6" width="34" height="24" forecolor="#FFFFFF" backcolor="#9D97C2" fontName="Britannic Bold" fontSize="11.0" hTextAlign="Center" vTextAlign="Middle">
 			<text><![CDATA[S.No]]></text>
 			<box>
 				<pen lineColor="#FFFFFF"/>
@@ -391,7 +390,7 @@
 				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="cbf895cc-f50a-45f8-8f88-1db6f393f1a5" x="34" y="6" width="170" height="24" forecolor="#FFFFFF" backcolor="#9D97C2" fontName="Britannic Bold" fontSize="11.0" hTextAlign="Center" vTextAlign="Middle">
+		<element kind="staticText" uuid="25da49fa-293f-46cb-8174-dc5386e8b2ca" x="34" y="6" width="170" height="24" forecolor="#FFFFFF" backcolor="#9D97C2" fontName="Britannic Bold" fontSize="11.0" hTextAlign="Center" vTextAlign="Middle">
 			<text><![CDATA[Product Details]]></text>
 			<box>
 				<pen lineColor="#FFFFFF"/>
@@ -401,7 +400,7 @@
 				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="8f44940c-6fef-48d5-8127-87229624bb1f" x="204" y="6" width="65" height="24" forecolor="#FFFFFF" backcolor="#9D97C2" fontName="Britannic Bold" fontSize="11.0" hTextAlign="Center" vTextAlign="Middle">
+		<element kind="staticText" uuid="901b3334-70f6-4eec-8697-807d36f9823e" x="204" y="6" width="65" height="24" forecolor="#FFFFFF" backcolor="#9D97C2" fontName="Britannic Bold" fontSize="11.0" hTextAlign="Center" vTextAlign="Middle">
 			<text><![CDATA[Serial No]]></text>
 			<box>
 				<pen lineColor="#FFFFFF"/>
@@ -411,7 +410,7 @@
 				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="6074af59-a9db-4899-9862-2420d18837ec" x="269" y="6" width="65" height="24" forecolor="#FFFFFF" backcolor="#9D97C2" fontName="Britannic Bold" fontSize="11.0" hTextAlign="Center" vTextAlign="Middle">
+		<element kind="staticText" uuid="e9fe11e2-1119-4f6a-9e77-075d317f4615" x="269" y="6" width="65" height="24" forecolor="#FFFFFF" backcolor="#9D97C2" fontName="Britannic Bold" fontSize="11.0" hTextAlign="Center" vTextAlign="Middle">
 			<text><![CDATA[Qty]]></text>
 			<box>
 				<pen lineColor="#FFFFFF"/>
@@ -421,7 +420,7 @@
 				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="b1f48119-dad1-4bf4-a120-d745f3e16f1e" x="334" y="6" width="76" height="24" forecolor="#FFFFFF" backcolor="#9D97C2" fontName="Britannic Bold" fontSize="11.0" hTextAlign="Center" vTextAlign="Middle">
+		<element kind="staticText" uuid="7d552b89-60d6-4bb9-be3d-024f5a882823" x="334" y="6" width="76" height="24" forecolor="#FFFFFF" backcolor="#9D97C2" fontName="Britannic Bold" fontSize="11.0" hTextAlign="Center" vTextAlign="Middle">
 			<text><![CDATA[Unit Price]]></text>
 			<box>
 				<pen lineColor="#FFFFFF"/>
@@ -431,7 +430,7 @@
 				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="52f23346-3cdf-402c-b97f-4de425586fac" x="410" y="6" width="50" height="24" forecolor="#FFFFFF" backcolor="#9D97C2" fontName="Britannic Bold" fontSize="11.0" hTextAlign="Center" vTextAlign="Middle">
+		<element kind="staticText" uuid="af68f7f7-3006-46b9-b45f-36a07d064c42" x="410" y="6" width="50" height="24" forecolor="#FFFFFF" backcolor="#9D97C2" fontName="Britannic Bold" fontSize="11.0" hTextAlign="Center" vTextAlign="Middle">
 			<text><![CDATA[Tax]]></text>
 			<box>
 				<pen lineColor="#FFFFFF"/>
@@ -441,7 +440,7 @@
 				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="81d322f3-bfb6-4801-8b94-1dccf4b8352a" x="460" y="6" width="95" height="24" forecolor="#FFFFFF" backcolor="#9D97C2" fontName="Britannic Bold" fontSize="11.0" hTextAlign="Center" vTextAlign="Middle">
+		<element kind="staticText" uuid="a6d5379f-5189-476f-b655-c08f53e0841c" x="460" y="6" width="96" height="24" forecolor="#FFFFFF" backcolor="#9D97C2" fontName="Britannic Bold" fontSize="11.0" hTextAlign="Center" vTextAlign="Middle">
 			<text><![CDATA[Total]]></text>
 			<property name="com.jaspersoft.studio.unit.width" value="px"/>
 			<box>
@@ -454,33 +453,33 @@
 		</element>
 	</columnHeader>
 	<detail>
-		<band height="30">
-			<element kind="textField" uuid="c011f455-330d-4def-9a37-40394d16f08a" x="0" y="0" width="34" height="30" fontName="Algerian" hTextAlign="Center" vTextAlign="Middle">
+		<band height="44">
+			<element kind="textField" uuid="8af1b360-56cc-480d-b141-6201b3ccdf12" x="0" y="10" width="34" height="30" fontName="Algerian" bold="true" hTextAlign="Center" vTextAlign="Middle">
 				<expression><![CDATA[$V{REPORT_COUNT}]]></expression>
 			</element>
-			<element kind="textField" uuid="94d169fb-2fe7-4e56-9852-be0b5ae22294" x="34" y="0" width="170" height="30" fontName="Algerian" hTextAlign="Center" vTextAlign="Middle">
+			<element kind="textField" uuid="49945a84-6450-4cec-aab1-a126817f4f85" x="34" y="10" width="170" height="30" fontName="Algerian" bold="true" hTextAlign="Center" vTextAlign="Middle">
 				<expression><![CDATA[$F{product_details}]]></expression>
 			</element>
-			<element kind="textField" uuid="78518e43-0ac9-4169-ba74-09a00f25b657" x="204" y="0" width="65" height="30" fontName="Algerian" hTextAlign="Center" vTextAlign="Middle">
+			<element kind="textField" uuid="04ad06bd-3c36-462d-b078-57b4e96383ee" x="204" y="10" width="65" height="30" fontName="Algerian" bold="true" hTextAlign="Center" vTextAlign="Middle">
 				<expression><![CDATA[$F{product_code}]]></expression>
 			</element>
-			<element kind="textField" uuid="99646ee6-e436-415c-890e-2eebe78f9643" x="269" y="0" width="65" height="30" fontName="Algerian" hTextAlign="Center" vTextAlign="Middle">
+			<element kind="textField" uuid="548869a0-0528-49f3-a950-404336197f77" x="269" y="10" width="65" height="30" fontName="Algerian" bold="true" hTextAlign="Center" vTextAlign="Middle">
 				<expression><![CDATA[$F{qty}]]></expression>
 			</element>
-			<element kind="textField" uuid="1deced69-1433-4146-9236-32ea6003f6fc" x="334" y="0" width="76" height="30" fontName="Algerian" hTextAlign="Center" vTextAlign="Middle">
+			<element kind="textField" uuid="8dc9f5fa-188e-4f62-8ef4-b78a6391c68d" x="334" y="10" width="76" height="30" fontName="Algerian" bold="true" hTextAlign="Center" vTextAlign="Middle">
 				<expression><![CDATA[$F{unit_price}]]></expression>
 			</element>
-			<element kind="textField" uuid="5de023ee-8cb1-4b90-af52-b3719ad3e546" x="410" y="0" width="50" height="30" fontName="Algerian" hTextAlign="Center" vTextAlign="Middle">
+			<element kind="textField" uuid="cd02a4e7-8f21-41fc-b6ca-7f6f644828be" x="410" y="10" width="50" height="30" fontName="Algerian" bold="true" hTextAlign="Center" vTextAlign="Middle">
 				<expression><![CDATA[$F{tax}]]></expression>
 			</element>
-			<element kind="textField" uuid="db2cafc2-1310-41eb-b607-6db1d2fab449" x="460" y="0" width="95" height="30" fontName="Algerian" hTextAlign="Center" vTextAlign="Middle">
+			<element kind="textField" uuid="c4d4d90c-a2d9-4c88-9ed9-bc739ac51f7c" x="460" y="10" width="96" height="30" fontName="Algerian" bold="true" hTextAlign="Center" vTextAlign="Middle">
 				<expression><![CDATA[$F{total}]]></expression>
 			</element>
 		</band>
 	</detail>
-	<columnFooter height="40" splitType="Stretch">
-		<element kind="staticText" uuid="803f3d97-16d5-4ce5-93ec-f2923c07709b" x="0" y="4" width="460" height="26" fontName="Arial Black" hTextAlign="Right" vTextAlign="Middle">
-			<text><![CDATA[Sub Total  :]]></text>
+	<columnFooter height="35" splitType="Stretch">
+		<element kind="staticText" uuid="3a19f291-d1bf-4470-8521-27b36f36ed8b" x="0" y="4" width="480" height="26" fontName="Arial Black" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[Sub Total                           ]]></text>
 			<box>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -488,7 +487,7 @@
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="textField" uuid="412808d7-ee84-4260-81dd-90692ef8d047" x="460" y="4" width="95" height="26" fontName="Algerian" bold="true" hTextAlign="Center" vTextAlign="Middle">
+		<element kind="textField" uuid="389c0979-6ad5-491c-8878-ce1ad1ba8bca" x="480" y="4" width="75" height="26" fontName="Algerian" bold="true" hTextAlign="Center" vTextAlign="Middle">
 			<expression><![CDATA[$P{totalProduct}]]></expression>
 			<box>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -497,24 +496,15 @@
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="line" uuid="a14ef353-6bc8-40f1-9f39-7464031b77ab" x="0" y="34" width="555" height="1" forecolor="#9D97C3">
+		<element kind="line" uuid="3d001863-9dea-4989-acf9-af915d23f1f5" x="0" y="34" width="555" height="1" forecolor="#9D97C3">
 			<pen lineWidth="2.0"/>
 		</element>
-		<element kind="line" uuid="5591402b-7ca8-44b5-854e-8705c6730cf0" x="0" y="0" width="555" height="1" forecolor="#9D97C3">
+		<element kind="line" uuid="352f07e6-f514-4e25-a849-b362aa78a112" x="0" y="0" width="555" height="1" forecolor="#9D97C3">
 			<pen lineWidth="2.0"/>
 		</element>
 	</columnFooter>
-	<pageFooter height="173" splitType="Stretch">
-		<element kind="staticText" uuid="1473b127-bfad-4aee-8710-d7185fa8c54f" x="0" y="0" width="60" height="20" fontName="Arial Black" bold="true" hTextAlign="Left" vTextAlign="Middle">
-			<text><![CDATA[Ref]]></text>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="31b02718-dbfd-4698-add4-3502f69d62fd" x="60" y="0" width="130" height="20" bold="true" hTextAlign="Left" vTextAlign="Middle">
+	<pageFooter height="70" splitType="Stretch">
+		<element kind="textField" uuid="aa41433e-5e85-424d-8965-c4599b2b0f91" x="60" y="0" width="130" height="20" bold="true" hTextAlign="Left" vTextAlign="Middle">
 			<expression><![CDATA[":   "+$P{ref}]]></expression>
 			<box>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -523,16 +513,7 @@
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="ef230d34-8fd0-4ac2-8538-0f8653b01eec" x="0" y="20" width="60" height="153" fontName="Arial Black" bold="true" hTextAlign="Left" vTextAlign="Top">
-			<text><![CDATA[Remarks]]></text>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="6a527d80-aa09-4d0e-a581-621f0d31ecf8" x="60" y="20" width="130" height="153" bold="true" hTextAlign="Left" vTextAlign="Top">
+		<element kind="textField" uuid="172d0f48-2ee2-45d4-ab24-88fcca247b8a" x="60" y="20" width="130" height="50" bold="true" hTextAlign="Left" vTextAlign="Top">
 			<expression><![CDATA[":   "+$P{remarks}]]></expression>
 			<box>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -541,8 +522,8 @@
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="f0957192-7318-4366-b6f9-5070508900f0" x="190" y="0" width="365" height="20" fontName="Arial Black" bold="true" hTextAlign="Left" vTextAlign="Middle">
-			<text><![CDATA[           	       Discount Details]]></text>
+		<element kind="staticText" uuid="b74701f2-fb5c-4932-a523-f6359fdfdd3c" x="0" y="0" width="60" height="20" fontName="Arial Black" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Ref]]></text>
 			<box>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -550,8 +531,8 @@
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="1ef11f24-87a5-475e-873c-82108a086be0" x="190" y="20" width="160" height="20" fontName="Arial Black" bold="true" hTextAlign="Right" vTextAlign="Middle">
-			<text><![CDATA[Discount Estimate :]]></text>
+		<element kind="staticText" uuid="a9077674-6aef-4b8a-a5e1-15026843dbd4" x="0" y="20" width="60" height="50" fontName="Arial Black" bold="true" hTextAlign="Left" vTextAlign="Top">
+			<text><![CDATA[Remarks]]></text>
 			<box>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -559,115 +540,7 @@
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="332f9dbb-b023-4cbd-adb2-17fb2f4c57f6" x="190" y="60" width="160" height="20" fontName="Arial Black" bold="true" hTextAlign="Right" vTextAlign="Middle">
-			<text><![CDATA[StockClearanceEstimate :]]></text>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="staticText" uuid="525940bb-ec84-418f-b22c-a33725be741d" x="190" y="80" width="160" height="20" fontName="Arial Black" bold="true" hTextAlign="Right" vTextAlign="Middle">
-			<text><![CDATA[Dicount Amount :]]></text>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="staticText" uuid="caa6dd67-3391-45f3-90a9-57cb4d7e55da" x="190" y="100" width="160" height="20" fontName="Arial Black" bold="true" hTextAlign="Right" vTextAlign="Middle">
-			<text><![CDATA[	GST :]]></text>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="staticText" uuid="9f9f7673-4063-4f75-9307-394003e66183" x="190" y="120" width="160" height="20" fontName="Arial Black" bold="true" hTextAlign="Right" vTextAlign="Middle">
-			<text><![CDATA[Delivery Charges :]]></text>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="staticText" uuid="938777e4-2ad5-4ce7-86a1-a43c9c1c2f48" x="190" y="140" width="160" height="33" fontName="Arial Black" bold="true" hTextAlign="Right" vTextAlign="Middle">
-			<text><![CDATA[Total Amount :]]></text>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="5b3a0d8b-a49a-4480-93a8-cecd98d0b4a2" x="350" y="20" width="130" height="20" fontName="Algerian" bold="true" hTextAlign="Center" vTextAlign="Middle">
-			<expression><![CDATA[$P{discountEstimate}]]></expression>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="8541aefe-b58b-4a0a-bac9-8c58d301a0b5" x="350" y="40" width="130" height="20" fontName="Algerian" bold="true" hTextAlign="Center" vTextAlign="Middle">
-			<expression><![CDATA[$P{demoPieceEstimate}]]></expression>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="719c77e4-9a5d-4055-b1f0-028e291f8f8b" x="350" y="60" width="130" height="20" fontName="Algerian" bold="true" hTextAlign="Center" vTextAlign="Middle">
-			<expression><![CDATA[$P{stockClearanceEstimate}]]></expression>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="60b0546a-23d9-4d6a-a1e2-1a14c47722d5" x="350" y="80" width="205" height="20" fontName="Algerian" bold="true" hTextAlign="Center" vTextAlign="Middle">
-			<expression><![CDATA[$P{discountAmount}]]></expression>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="staticText" uuid="b446f424-f571-4831-82d7-c2a3d9037ae2" x="480" y="20" width="75" height="20" fontName="Arial Black" bold="true" hTextAlign="Center" vTextAlign="Middle">
-			<text><![CDATA[For %]]></text>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="staticText" uuid="fa9cbc32-5b3c-4809-8431-35ac83da5393" x="480" y="40" width="75" height="20" fontName="Arial Black" bold="true" hTextAlign="Center" vTextAlign="Middle">
-			<text><![CDATA[For %]]></text>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="staticText" uuid="fd8b83df-1cff-4644-b0d2-91fbf2a16eb5" x="480" y="60" width="75" height="20" fontName="Arial Black" bold="true" hTextAlign="Center" vTextAlign="Middle">
-			<text><![CDATA[For %]]></text>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="4b825cb1-fa35-42d0-ae73-459dfbf6d674" x="350" y="120" width="205" height="20" fontName="Algerian" bold="true" hTextAlign="Center" vTextAlign="Middle">
+		<element kind="textField" uuid="9d791eb0-b554-459f-8bb9-772ed42ccfd6" x="330" y="0" width="225" height="20" fontName="Algerian" bold="true" hTextAlign="Center" vTextAlign="Middle">
 			<expression><![CDATA[$P{deliveryCharges}]]></expression>
 			<box>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -676,26 +549,26 @@
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="textField" uuid="f1ecce98-9bf2-4b86-ac42-8e8e2180c465" x="350" y="100" width="205" height="20" fontName="Algerian" bold="true" hTextAlign="Center" vTextAlign="Middle">
-			<expression><![CDATA[$P{gst}]]></expression>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="staticText" uuid="15d219df-bb05-4056-a3e7-25a182e53cb6" x="190" y="40" width="160" height="20" fontName="Arial Black" bold="true" hTextAlign="Right" vTextAlign="Middle">
-			<text><![CDATA[Demo Piece Estimate :]]></text>
-			<box>
-				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="9d9bc4e5-0572-48c8-8521-f482a0177cde" x="350" y="140" width="205" height="33" fontName="Algerian" bold="true" hTextAlign="Center" vTextAlign="Middle">
+		<element kind="textField" uuid="524c43cb-29ab-4462-815b-28a600f87ba7" x="330" y="20" width="225" height="50" fontName="Algerian" bold="true" hTextAlign="Center" vTextAlign="Middle">
 			<expression><![CDATA[$P{totalAmount}]]></expression>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="b5663272-2f25-411b-a177-faf8736eb10b" x="190" y="20" width="140" height="50" fontName="Arial Black" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[Total Amount]]></text>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="18a574f3-25f7-4339-abf9-817a38088a10" x="190" y="0" width="140" height="20" fontName="Arial Black" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[Delivery Charges]]></text>
 			<box>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
