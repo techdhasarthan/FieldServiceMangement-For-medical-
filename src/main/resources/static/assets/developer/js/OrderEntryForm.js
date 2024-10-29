@@ -864,8 +864,8 @@ function populateExportJasperReportInOrderVResponse(vResponseObj,reportType){
 				toastr.success("PDF Export Successfully ","Completed", {closeButton: !0,tapToDismiss: !1});	
 			}else{
 				toastr.success("Excel Export Successfully ","Completed", {closeButton: !0,tapToDismiss: !1});
-			}					
-			window.open(`/fsm/exportFiles/download/${vResponseObj.fileName}`);			
+			}									
+			window.open(`/fsm/exportFiles/download/${vResponseObj.fileName}`);		
 		}else{
 			toastr.info("Wait to Export ,may be wrong parameter","Warning", {closeButton: !0,tapToDismiss: !1});
 		}
