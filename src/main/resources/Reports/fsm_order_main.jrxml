@@ -504,7 +504,7 @@
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="06202617-0f9e-4619-a846-885269a94257" x="280" y="80" width="125" height="30" fontName="" bold="true" hTextAlign="Left" vTextAlign="Middle">
+		<element kind="staticText" uuid="06202617-0f9e-4619-a846-885269a94257" x="280" y="80" width="125" height="30" fontName="DejaVu Sans" bold="true" hTextAlign="Left" vTextAlign="Middle">
 			<text><![CDATA[Order.NO]]></text>
 			<box>
 				<pen lineWidth="1.0"/>
