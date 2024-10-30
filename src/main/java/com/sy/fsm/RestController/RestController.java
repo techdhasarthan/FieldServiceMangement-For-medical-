@@ -147,7 +147,7 @@ public class RestController {
 	            }
 	        } else {
 	        	newDetails.setId(UUID.randomUUID());
-	        	newDetails.setCategoryID(categoryDetailsRepository.generateCategorySequence());
+	        	//newDetails.setCategoryID(categoryDetailsRepository.generateCategorySequence());
 	        	categoryDetailsRepository.save(newDetails);
 	            vResponse = "{\"status\":\"true\"}";
 	        }
@@ -293,7 +293,7 @@ public class RestController {
 	            }
 	        } else {
 	        	newDetails.setId(UUID.randomUUID());
-	        	newDetails.setProductID(productDetailsRepository.generateProductSequence());
+	        	//newDetails.setProductID(productDetailsRepository.generateProductSequence());
 	        	productDetailsRepository.save(newDetails);
 	            vResponse = "{\"status\":\"true\"}";
 	        }

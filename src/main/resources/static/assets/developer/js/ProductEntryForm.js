@@ -4,14 +4,17 @@ function getProductEntryForm(){
 					<div class="modal-dialog modal-dialog-centered" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title">Create Product</h5>
+									<h3 class="modal-title">Create Product</h3>
 									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeProductEntryForm()"></button>
 								</div>
 								<div class="modal-body mx-3">
 									<div class="mb-3">
-										<label class="form-label">Product Name</label>
+										<label class="form-label">Product ID</label>
 										<input type="hidden" class="form-control" id="fsm_product_details_uuid_id">
-										<input type="hidden" class="form-control" id="fsm_product_details_product_id">
+										<input type="text" class="form-control" id="fsm_product_details_product_id">										
+									</div>
+									<div class="mb-3">
+										<label class="form-label">Product Name</label>										
 										<input type="text" class="form-control" id="fsm_product_details_new_product">
 									</div>
 									<div class="mb-3">

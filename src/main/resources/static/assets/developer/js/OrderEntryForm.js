@@ -78,7 +78,7 @@ function getOrderEntryForm(showType){
 
                                         <div class="mb-3">
                                             <label for="fsm_order_detail_est_no">Est No</label>
-                                            <input type="text" class="form-control" id="fsm_order_detail_est_no" name="Est No" placeholder="Enter Est No">
+                                            <input type="text" class="form-control" id="fsm_order_detail_est_no" name="Est No" placeholder="Enter Est No" disabled>
                                         </div>
 
                                         <div class="mb-3">
@@ -176,7 +176,16 @@ function getOrderEntryForm(showType){
                                                 <option value="neft">neft</option>
 												<option value="cheque">cheque</option>
                                             </select>
-                                        </div>		
+                                        </div>	
+										<div class="mb-3">
+                                            <label for="fsm_order_detail_payment_incharges">Payment InCharges</label>
+                                            <input type="text" class="form-control" id="fsm_order_detail_payment_incharges" name="Payment Incharges" placeholder="Enter Details">
+                                        </div>
+										<div class="mb-3">
+                                            <label for="fsm_order_detail_payment_term_date">Payment Term Date</label>
+                                            <input type="date" class="form-control" id="fsm_order_detail_payment_term_date" name="Payment Incharges" >
+                                        </div>
+											
 										
                                     </div>
                                 </div>
@@ -394,7 +403,8 @@ async function updateOrderDetails(){
 	jsonObj['Payment Mode'] = document.getElementById("fsm_order_detail_payment_mode").value;
 	jsonObj['Created Date'] = new Date().toISOString();
 	jsonObj['Created By'] = logginerUserId;  
-    
+	jsonObj['Payment Charges'] = document.getElementById("fsm_order_detail_payment_incharges").value;
+	jsonObj['Payment Term Date'] = document.getElementById("fsm_order_detail_payment_term_date").value;    
            
     /*var inputNames = "Order"; 
     var inputTypes = "text";
@@ -457,6 +467,8 @@ function clearOrderDetails(){
 	document.getElementById("fsm_Order_detail_balance").value = "";
 	document.getElementById("fsm_Order_detail_approval_status").value = "";
 	document.getElementById("fsm_order_detail_payment_mode").value = "";
+	document.getElementById("fsm_order_detail_payment_incharges").value = "";
+	document.getElementById("fsm_order_detail_payment_term_date").value = "";
     
     document.getElementById('order_product_tbody_id').innerHTML = "";         
 };
@@ -527,6 +539,8 @@ function populateEditOrderDetailsVResponse(vResponseObj){
 		document.getElementById("fsm_Order_detail_balance").value = jsonObj['Balance'];
 		document.getElementById("fsm_Order_detail_approval_status").value = jsonObj['Register Status'];
 		document.getElementById("fsm_order_detail_payment_mode").value = jsonObj['Payment Mode'] ;
+		document.getElementById("fsm_order_detail_payment_incharges").value = jsonObj['Payment Charges'];
+		document.getElementById("fsm_order_detail_payment_term_date").value = jsonObj['Payment Term Date'];
   		var productsJsonObj = vResponseObj.ordProductData;
         loadOrderProductRowsFromJson(productsJsonObj);  
 		toggleDemoDate(jsonObj['Demo Plan']);                
