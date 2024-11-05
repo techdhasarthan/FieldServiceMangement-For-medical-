@@ -57,67 +57,66 @@ function getEstimationEntryForm(showType){
                             	<div class="row">
 									    <div class="col-12 col-lg-6">
 									        <div class="mb-3">
-									            <label for="fsm_Estimation_detail_EstimationNO">EST.NO</label>
+									            <label for="fsm_Estimation_detail_EstimationNO" class="form-label">EST.NO</label>
 									            <input type="hidden" class="form-control" id="fsm_Estimation_detail_uuid_id" name="UUID">
 									            <input type="text" class="form-control" id="fsm_Estimation_detail_EstimationNO" name="EstimationNO"  placeholder="Auto-Generate" disabled>
 									        </div>
 									        <div class="mb-3">
-									            <label for="fsm_Estimation_detail_customer_name">Customer Name</label>
+									            <label for="fsm_Estimation_detail_customer_name" class="form-label">Customer Name</label>
 									            <input type="text" class="form-control" id="fsm_Estimation_detail_customer_name" name="Customer Name">
 									        </div>
 									        <div class="mb-3">
-									            <label for="fsm_Estimation_detail_EstimationProcessDate">Estimation Process Date</label>
+									            <label for="fsm_Estimation_detail_EstimationProcessDate" class="form-label">Estimation Process Date</label>
 									            <input type="date" class="form-control" id="fsm_Estimation_detail_EstimationProcessDate" name="EstimationProcessDate" data-mask="00/00/0000 00:00:00" autocomplete="off">
 									        </div>									        
 									        																				
 									        <div class="mb-3">
-									            <label for="fsm_Estimation_detail_billing_address">Billing Address </label>
+									            <label for="fsm_Estimation_detail_billing_address" class="form-label">Billing Address </label>
 									            <textarea class="form-control" id="fsm_Estimation_detail_billing_address" name="Billing Address"></textarea>
 									        </div>
 									        
 											<div class="mb-3">
-									            <label for="fsm_Estimation_detail_customer_city">Customer City</label>
+									            <label for="fsm_Estimation_detail_customer_city" class="form-label">Customer City</label>
 									            <input type="text" class="form-control" id="fsm_Estimation_detail_customer_city" name="Customer City">
 									        </div>
 									        <div class="mb-3">
-									            <label for="fsm_Estimation_detail_customer_pin_code">Customer Pin code</label>
+									            <label for="fsm_Estimation_detail_customer_pin_code" class="form-label">Customer Pin code</label>
 									            <input type="text" class="form-control" id="fsm_Estimation_detail_customer_pin_code" name="Customer City">
 									        </div>
 									        <div class="mb-3">
-									            <label for="fsm_Estimation_detail_customer_phone">Customer Phone No</label>
+									            <label for="fsm_Estimation_detail_customer_phone" class="form-label">Customer Phone No</label>
 									            <input type="tel" class="form-control" id="fsm_Estimation_detail_customer_phone" name="Customer Phone No">
 									        </div>
 									        <div class="mb-3">
-									            <label for="fsm_Estimation_detail_customer_email">Customer Email</label>
+									            <label for="fsm_Estimation_detail_customer_email" class="form-label">Customer Email</label>
 									            <input type="tel" class="form-control" id="fsm_Estimation_detail_customer_email" name="Customer Email">
 									        </div>
 									    </div>
 									    
 									    <div class="col-12 col-lg-6">
 									    	<div class="mb-3">
-									            <label for="fsm_Estimation_detail_rep_account">Rep A/C</label>
+									            <label for="fsm_Estimation_detail_rep_account" class="form-label">Rep A/C</label>
 									            <input type="text" class="form-control" id="fsm_Estimation_detail_rep_account" name="Rep A/C">
 									        </div>																		
 											<div class="mb-3">
-									            <label for="fsm_Estimation_detail_rep_attd">Rep Attd</label>
-									            <select class="form-select" id="fsm_Estimation_detail_rep_attd" name="Rep Attd">
-												</select>
+									            <label for="fsm_Estimation_detail_rep_attd" class="form-label">Rep Attd</label>
+									            <input class="form-control" id="fsm_Estimation_detail_rep_attd" name="Rep Attd" />												
 									        </div>
 
 									        <div class="mb-3">
-									            <label for="fsm_Estimation_detail_delivery_city">Delivery City</label>
+									            <label for="fsm_Estimation_detail_delivery_city" class="form-label">Delivery City</label>
 									            <input type="text" class="form-control" id="fsm_Estimation_detail_delivery_city" name="Delivery City">
 									        </div>
 									        <div class="mb-3">															
-									            <label for="fsm_Estimation_detail_delivery_ddress">Delivery Address</label>
+									            <label for="fsm_Estimation_detail_delivery_ddress" class="form-label">Delivery Address</label>
 									            <textarea class="form-control" id="fsm_Estimation_detail_delivery_ddress" name="Delivery Address"></textarea>
 											</div>
 											<div class="mb-3">
-									            <label for="fsm_Estimation_detail_delivery_pin_code">Delivery Pin code</label>
+									            <label for="fsm_Estimation_detail_delivery_pin_code" class="form-label">Delivery Pin code</label>
 									            <input type="text" class="form-control" id="fsm_Estimation_detail_delivery_pin_code" name="Delivery Pin code">
 									        </div>
 									        <div class="mb-3">
-									            <label for="fsm_Estimation_detail_warrantly">Warrantly</label>
+									            <label for="fsm_Estimation_detail_warrantly" class="form-label">Warrantly</label>
 									            <select class="form-select" id="fsm_Estimation_detail_warrantly" name="Warrantly">
 													<option>6 Months</option>
 													<option>1 Yrs</option>
@@ -128,7 +127,7 @@ function getEstimationEntryForm(showType){
 												</select>
 									        </div>
 									        <div class="mb-3">
-									            <label for="fsm_Estimation_detail_Pan_and_gst">Pan / GST</label>
+									            <label for="fsm_Estimation_detail_Pan_and_gst" class="form-label">Pan / GST</label>
 									            <input type="text" class="form-control" id="fsm_Estimation_detail_Pan_and_gst" name="Pan / GST">
 									        </div>									        
 									    </div>
@@ -155,31 +154,31 @@ function getEstimationEntryForm(showType){
 								                        <table class="table table-center table-hover datatable">
 								                            <thead class="thead-light">
 								                                <tr>
-								                                    <th>S.No</th>
-								                                    <th>Product Details</th>
-								                                    <th>Pdt.sl.code</th>
-								                                    <th>Qty</th>
-								                                    <th>Unit Price</th>
-								                                    <th>Tax</th>
-								                                    <th>Total</th>
-								                                    <th>Delete</th>
+								                                    <th class="form-label">S.No</th>
+								                                    <th class="form-label">Product Details</th>
+								                                    <th class="form-label">Pdt.sl.code</th>
+								                                    <th class="form-label">Qty</th>
+								                                    <th class="form-label">Unit Price</th>
+								                                    <th class="form-label">Tax</th>
+								                                    <th class="form-label">Total</th>
+								                                    <th class="form-label">Delete</th>
 								                                </tr>
 								                            </thead>
 								                            <tbody id="estimation_product_tbody_id"></tbody>
 								                            <tbody>
 								                                <tr>
 								                                    <td colspan="5"></td>
-								                                    <td>Total Product:</td>
+								                                    <td class="form-label">Total Product:</td>
 								                                    <td colspan="2" id="estimation_total_product_id">0.00</td>
 								                                </tr>
 								                            </tbody>
 								                            <thead class="thead-light">
 								                                <tr>
-								                                   <td>Ref:</td>
+								                                   <td class="form-label">Ref:</td>
 								                                    <td colspan="3">
 								                                    	<input type="text" class="form-control" id="fsm_Estimation_detail_ref" name="Ref">
 								                                    </td>
-								                                    <td>Its have Discount ?:</td>
+								                                    <td class="form-label">Its have Discount ?:</td>
 								                                    <td colspan="3">
 									                                    <select class="form-select" id="fsm_Estimation_detail_its_have_discount" name="Its have Discount ?" onclick="toggleItsHaveDiscount(this.value)">
 																			<option>No</option>
@@ -188,7 +187,7 @@ function getEstimationEntryForm(showType){
 								                                    </td>
 								                                </tr>
 								                                <tr>
-								                                   <td>Remarks:</td>                       
+								                                   <td class="form-label">Remarks:</td>                       
 								                                    <td colspan="7">
 									                                   <textarea class="form-control" id="fsm_Estimation_detail_remarks" name="remarks"></textarea>
 								                                    </td>
@@ -199,28 +198,28 @@ function getEstimationEntryForm(showType){
 														<table class="table table-center table-hover datatable" >
 															<tbody>	
 								                            	<tr>
-								                                   <td colspan="5">Discount Estimate:</td>
+								                                   <td colspan="5" class="form-label">Discount Estimate:</td>
 								                                    <td colspan="2">
 								                                    	<input type="text" class="form-control" id="fsm_Estimation_detail_discount_estimate" name="Discount Estimate">
 								                                    </td>
-								                                    <td>For %</td>               
+								                                    <td class="form-label">For %</td>               
 								                                </tr>
 								                                <tr>
-								                                   <td colspan="5">Demo Piece Estimate:</td>
+								                                   <td colspan="5" class="form-label">Demo Piece Estimate:</td>
 								                                    <td colspan="2">
 								                                    	<input type="text" class="form-control" id="fsm_Estimation_detail_demo_piece_estimate" name="Discount Estimate">
 								                                    </td>
-								                                    <td>For %</td>               
+								                                    <td class="form-label">For %</td>               
 								                                </tr>
 								                                <tr>
-								                                   <td colspan="5">Stock Clearance Estimate:</td>
+								                                   <td colspan="5" class="form-label">Stock Clearance Estimate:</td>
 								                                    <td colspan="2">
 								                                    	<input type="text" class="form-control" id="fsm_Estimation_detail_stock_clearance_estimate" name="Stock Clearance Estimate">
 								                                    </td>
-								                                    <td>For %</td>               
+								                                    <td class="form-label">For %</td>               
 								                                </tr>
 								                                <tr>
-								                                   <td colspan="5">Dicount Amount:</td>
+								                                   <td colspan="5" class="form-label">Dicount Amount:</td>
 								                                    <td colspan="3">
 								                                    	<input type="text" class="form-control" id="fsm_Estimation_detail_discount_amount" name="Discoutn Amount">
 								                                    </td>
@@ -228,7 +227,7 @@ function getEstimationEntryForm(showType){
 								                                </tr>
 								                                
 																<tr>
-																	<td colspan="5">GST:</td>
+																	<td colspan="5" class="form-label">GST:</td>
 								                                    <td colspan="3">
 								                                    	<input type="text" class="form-control" id="fsm_Estimation_detail_gst" name="GST">
 								                                    </td>                    
@@ -239,19 +238,19 @@ function getEstimationEntryForm(showType){
 														<table class="table table-center table-hover datatable">
 															<thead class="thead-light">     
 								                                <tr>
-								                                   <td colspan="5">Delivery Charges:</td>
+								                                   <td colspan="5" class="form-label">Delivery Charges:</td>
 								                                    <td colspan="3">
 								                                    	<input type="text" class="form-control" id="fsm_Estimation_detail_delivery_charges" name="Delivery Charges">
 								                                    </td>                               
 								                                </tr>
 								                                <tr>
-								                                   <td colspan="5">Total Amount:</td>
+								                                   <td colspan="5" class="form-label">Total Amount:</td>
 								                                    <td colspan="3">
 								                                    	<input type="text" class="form-control" id="fsm_Estimation_detail_total_amount" name="Total Amount">
 								                                    </td>              
 								                                </tr>
 								                                <tr>
-								                                   <td colspan="5">Approval Status:</td>
+								                                   <td colspan="5" class="form-label">Approval Status:</td>
 								                                    <td colspan="3">
 								                                    	<select class="form-select" id="fsm_Estimation_detail_approval_status1" name="Register Status">
 																			<option value="Estimation Enquiry">Estimation Enquiry</option>

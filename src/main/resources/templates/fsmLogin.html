@@ -116,8 +116,20 @@
 			}catch(exp){
 				alert(exp);
 			}				
-		}			            
-
+		};
+		
+		
+		
+		
+		
+		window.addEventListener("load", () => {
+		  history.replaceState(null, "", window.location.href);				  
+		  history.pushState(null, "", window.location.href);
+		  window.addEventListener("popstate", (event) => {
+		    history.pushState(null, "", window.location.href);
+		  });
+		});	            
+		
 		
 		
 	</script>

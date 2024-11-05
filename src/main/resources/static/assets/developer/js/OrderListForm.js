@@ -61,7 +61,8 @@ function getOrderListForm(){
 	                        <div class="col-md-3">
 	                            <label for="order_list_filter_demoPlan" class="form-label">Demo Plan</label>
 	                            <select class="form-select" id="fsm_order_detail_demo_plan" name="Demo Plan">
-	                                <option value="No">No</option>
+									<option value=""></option>
+									<option value="No">No</option>
 	                                <option value="Yes">Yes</option>
 	                            </select>
 	                        </div>
@@ -78,8 +79,12 @@ function getOrderListForm(){
 	                            <input type="text" class="form-control" id="order_list_filter_mobileNo" placeholder="Enter Mobile No">
 	                        </div>
 	                        <div class="col-md-3">
-	                            <label for="order_list_filter_itsHaveDiscount" class="form-label">Has Discount</label>
-	                            <input type="text" class="form-control" id="order_list_filter_itsHaveDiscount" placeholder="Yes/No">
+	                            <label for="order_list_filter_itsHaveDiscount" class="form-label">Has Discount</label>	                            
+								<select class="form-select" id="order_list_filter_itsHaveDiscount" name="Has Discount">
+									<option value=""></option>
+									<option value="No">No</option>
+	                                <option value="Yes">Yes</option>
+	                            </select>
 	                        </div>
 	                        <div class="col-md-3">
 	                            <label for="order_list_filter_orderStatus" class="form-label">Order Status</label>

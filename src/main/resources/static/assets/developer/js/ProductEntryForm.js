@@ -4,7 +4,7 @@ function getProductEntryForm(){
 					<div class="modal-dialog modal-dialog-centered" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3 class="modal-title">Create Product</h3>
+									<h2 class="modal-title">Create Product</h2>
 									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeProductEntryForm()"></button>
 								</div>
 								<div class="modal-body mx-3">

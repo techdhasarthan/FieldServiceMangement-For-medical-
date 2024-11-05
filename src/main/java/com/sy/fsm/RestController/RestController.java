@@ -1611,6 +1611,7 @@ public class RestController {
 		    }
 		    return vResponse;
 		}
+		
 		@RequestMapping(value = "/fsm/getFilterOrderDetailsList", method = RequestMethod.POST, consumes = "application/json")
 		public String getFilterOrderDetailsList(@RequestBody String payload) {
 		    String vResponse = "{\"status\":\"false\"}";
@@ -1670,8 +1671,8 @@ public class RestController {
 		        SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		        mapper.setDateFormat(sdf1);
 		        String sourceString = mapper.writeValueAsString(detailsList);
-		        vResponse = "{\"status\":\"true\",\"data\":" + sourceString + "}";
-		        System.out.println(sourceString);
+		        vResponse = "{\"status\":\"true\",\"data\":"+ sourceString +"}";
+		        System.out.println(vResponse);
 		        
 		    } catch (Exception e) {
 		        e.printStackTrace();

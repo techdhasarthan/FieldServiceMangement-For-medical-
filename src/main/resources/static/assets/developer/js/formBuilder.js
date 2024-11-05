@@ -83,5 +83,5 @@ function handleError(formName,error){
 function logOut(){
 	toastr.info("Sign Out","Info", {closeButton: !0,tapToDismiss: !1});
 	window.location.replace("/fsm/login");	
-	sessionStorage.clear();	
+	sessionStorage.removeItem("fromLogin");
 };

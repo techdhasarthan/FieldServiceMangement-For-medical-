@@ -149,7 +149,15 @@
     var logginerRoleName = document.getElementById("vResponse_login_role_name").value;
     var logginerProfileImage = document.getElementById("vResponse_login_profile_image_name").value;
     var logginerUserRights = document.getElementById("vResponse_login_user_rights").value;
-    
+    if(logginerUserId != ""){
+		window.addEventListener("load", () => {		  
+		  history.pushState(null, "", window.location.href);
+		  window.addEventListener("popstate", (event) => {
+		    history.pushState(null, "", window.location.href);
+		  });
+		});
+
+	}
     document.getElementById("fsm_loginer_role_name").innerHTML = logginerRoleName;
     document.getElementById("fsm_loginer_user_id").innerHTML = logginerUserId;
     document.getElementById("fsm_loginer_user_name").innerHTML = logginerUserName;
@@ -158,8 +166,8 @@
     if(logginerProfileImage != ""){             
         document.getElementById("fsm_loginer_profile_image_id").src = "/fsm/RetrieveFile/"+logginerProfileImage;    
     }
-    sessionStorage.clear();
-</script>
+	
+	</script>
 
 <script src="/assets/developer/js/commonCore.js"></script>
 <script src="/assets/developer/js/navigation.js"></script>

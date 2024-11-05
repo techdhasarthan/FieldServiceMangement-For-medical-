@@ -5,7 +5,7 @@ function getTeamMemberListForm(){
 					
 							<div class="modal-content" style="width:70%;left:15%;top:10%;">
 								<div class="modal-header">
-									<h5 class="modal-title">Add Team Member</h5>
+									<h2 class="modal-title">Add Team Member</h2>
 									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeTeamMemberEntryForm()"></button>
 								</div>
 								<div class="modal-body mx-3" id="team_member_list_container" style="overflow:auto"></div>

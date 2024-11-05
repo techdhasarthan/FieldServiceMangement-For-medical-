@@ -4,7 +4,7 @@ function getAdminDashboardForm(){
 
 			<div class="row mb-2 mb-xl-3">
 				<div class="col-auto d-none d-sm-block">
-					<h3>FSM - INDEXES</h3>
+					<h2>FSM - INDEXES</h2>
 				</div>
 
 				<div class="col-auto ms-auto text-end mt-n1">

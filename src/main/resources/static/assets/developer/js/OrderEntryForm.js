@@ -57,7 +57,7 @@ function getOrderEntryForm(showType){
                                     <!-- Left Column -->
                                     <div class="col-12 col-lg-6">
                                         <div class="mb-3">
-                                            <label for="fsm_order_detail_e_no">E.No</label>
+                                            <label for="fsm_order_detail_e_no" class="form-label">E.No</label>
                                             <input type="hidden" class="form-control" id="fsm_Order_detail_uuid_id" >
 											<input type="hidden" class="form-control" id="fsm_Order_detail_d_d_no" >
                                           <input type="hidden" class="form-control" id="fsm_Order_detail_rep_attd" >
@@ -77,41 +77,41 @@ function getOrderEntryForm(showType){
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="fsm_order_detail_est_no">Est No</label>
+                                            <label for="fsm_order_detail_est_no" class="form-label">Est No</label>
                                             <input type="text" class="form-control" id="fsm_order_detail_est_no" name="Est No" placeholder="Enter Est No" disabled>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="fsm_order_detail_customer_name">Customer Name</label>
+                                            <label for="fsm_order_detail_customer_name" class="form-label">Customer Name</label>
                                             <input type="text" class="form-control" id="fsm_order_detail_customer_name" name="Customer Name" placeholder="Enter Customer Name">
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="fsm_order_detail_customer_city">Customer City</label>
+                                            <label for="fsm_order_detail_customer_city" class="form-label">Customer City</label>
                                             <input type="text" class="form-control" id="fsm_order_detail_customer_city" name="Customer City" placeholder="Enter Customer City">
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="fsm_order_detail_customer_pin_code">Customer Pin Code</label>
+                                            <label for="fsm_order_detail_customer_pin_code" class="form-label">Customer Pin Code</label>
                                             <input type="text" class="form-control" id="fsm_order_detail_customer_pin_code" name="Customer Pin Code" placeholder="Enter Customer Pin Code">
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="fsm_order_detail_customer_phone">Customer Phone</label>
+                                            <label for="fsm_order_detail_customer_phone" class="form-label">Customer Phone</label>
                                             <input type="tel" class="form-control" id="fsm_order_detail_customer_phone" name="Customer Phone" placeholder="Enter Customer Phone">
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="fsm_order_detail_customer_email">Customer Email</label>
+                                            <label for="fsm_order_detail_customer_email" class="form-label">Customer Email</label>
                                             <input type="email" class="form-control" id="fsm_order_detail_customer_email" name="Customer Email" placeholder="Enter Customer Email">
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="fsm_order_detail_billing_name">Billing Name</label>
+                                            <label for="fsm_order_detail_billing_name" class="form-label">Billing Name</label>
                                             <input type="text" class="form-control" id="fsm_order_detail_billing_name" name="Billing Name" placeholder="Enter Billing Name">
                                         </div>
 										<div class="mb-3">
-	                                        <label for="fsm_order_detail_billing_address">Billing Address</label>
+	                                        <label for="fsm_order_detail_billing_address" class="form-label">Billing Address</label>
 	                                        <textarea class="form-control" id="fsm_order_detail_billing_address" name="Billing Address" placeholder="Enter Billing Address"></textarea>
 	                                    </div>
                                         
@@ -120,27 +120,27 @@ function getOrderEntryForm(showType){
                                     <!-- Right Column -->
                                     <div class="col-12 col-lg-6">
                                         <div class="mb-3">
-                                            <label for="fsm_order_detail_order_no">Order No</label>
+                                            <label for="fsm_order_detail_order_no" class="form-label">Order No</label>
                                             <input type="text" class="form-control" id="fsm_order_detail_order_no" name="Order No" placeholder="Enter Order No" disabled>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="fsm_order_detail_so_no">SO No</label>
+                                            <label for="fsm_order_detail_so_no" class="form-label">SO No</label>
                                             <input type="text" class="form-control" id="fsm_order_detail_so_no" name="SO No" placeholder="Enter SO No">
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="fsm_order_detail_order_process_date">Order Process Date</label>
+                                            <label for="fsm_order_detail_order_process_date" class="form-label">Order Process Date</label>
                                             <input type="date" class="form-control" id="fsm_order_detail_order_process_date" name="Order Process Date">
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="fsm_order_detail_rep_code">Rep Code</label>
+                                            <label for="fsm_order_detail_rep_code" class="form-label">Rep Code</label>
                                             <input type="text" class="form-control" id="fsm_order_detail_rep_code" name="Rep Code" placeholder="Enter Rep Code">
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="fsm_order_detail_demo_plan">Demo Plan</label>
+                                            <label for="fsm_order_detail_demo_plan" class="form-label">Demo Plan</label>
                                             <select class="form-select" id="fsm_order_detail_demo_plan" name="Demo Plan" onchange="toggleDemoDate(this.value)">
                                                 <option value="No">No</option>
                                                 <option value="Yes">Yes</option>
@@ -149,12 +149,12 @@ function getOrderEntryForm(showType){
 
                                         <!-- Conditionally displayed Demo Date -->
                                         <div class="mb-3" id="demo_date_field" style="display: none;">
-                                            <label for="fsm_order_detail_demo_date">Demo Date</label>
+                                            <label for="fsm_order_detail_demo_date" class="form-label">Demo Date</label>
                                             <input type="date" class="form-control" id="fsm_order_detail_demo_date" name="Demo Date">
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="fsm_order_detail_warranty">Warranty</label>
+                                            <label for="fsm_order_detail_warranty" class="form-label">Warranty</label>
                                             <select class="form-select" id="fsm_order_detail_warranty" name="Warranty">
                                                 <option>6 Months</option>
                                                 <option>1 Year</option>
@@ -166,11 +166,11 @@ function getOrderEntryForm(showType){
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="fsm_order_detail_pan_and_gst">PAN / GST</label>
+                                            <label for="fsm_order_detail_pan_and_gst" class="form-label">PAN / GST</label>
                                             <input type="text" class="form-control" id="fsm_order_detail_pan_and_gst" name="PAN And GST" placeholder="Enter PAN / GST">
                                         </div>
 										<div class="mb-3">
-                                            <label for="fsm_order_detail_payment_mode">Payment Method</label>
+                                            <label for="fsm_order_detail_payment_mode" class="form-label">Payment Method</label>
                                             <select class="form-select" id="fsm_order_detail_payment_mode" name="Payment Method" >
                                                 <option value="cash">cash</option>
                                                 <option value="neft">neft</option>
@@ -178,11 +178,11 @@ function getOrderEntryForm(showType){
                                             </select>
                                         </div>	
 										<div class="mb-3">
-                                            <label for="fsm_order_detail_payment_incharges">Payment InCharges</label>
+                                            <label for="fsm_order_detail_payment_incharges" class="form-label">Payment InCharges</label>
                                             <input type="text" class="form-control" id="fsm_order_detail_payment_incharges" name="Payment Incharges" placeholder="Enter Details">
                                         </div>
 										<div class="mb-3">
-                                            <label for="fsm_order_detail_payment_term_date">Payment Term Date</label>
+                                            <label for="fsm_order_detail_payment_term_date" class="form-label">Payment Term Date</label>
                                             <input type="date" class="form-control" id="fsm_order_detail_payment_term_date" name="Payment Incharges" >
                                         </div>
 											
@@ -209,78 +209,78 @@ function getOrderEntryForm(showType){
                                                     <table class="table table-center table-hover datatable">
                                                         <thead class="thead-light">
                                                             <tr>
-                                                                <th>S.No</th>
-																<th>Product Type</th>
-                                                                <th>Product Details</th>
-                                                                <th>Pdt.sl.code</th>
-                                                                <th>Qty</th>
-                                                                <th>Unit Price</th>
-                                                                <th>Tax</th>
-                                                                <th>Total</th>
-                                                                <th>Delete</th>
+                                                                <th class="form-label">S.No</th>
+																<th class="form-label">Product Type</th>
+                                                                <th class="form-label">Product Details</th>
+                                                                <th class="form-label">Pdt.sl.code</th>
+                                                                <th class="form-label">Qty</th>
+                                                                <th class="form-label">Unit Price</th>
+                                                                <th class="form-label">Tax</th>
+                                                                <th class="form-label">Total</th>
+                                                                <th class="form-label">Delete</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="order_product_tbody_id"></tbody>
                                                         <tbody>
                                                             <tr>
                                                                 <td colspan="6"></td>
-                                                                <td>Total Product:</td>
+                                                                <td class="form-label">Total Product:</td>
                                                                 <td colspan="2" id="order_total_product_id">0.00</td>
                                                             </tr>
                                                         </tbody>
                                                         <thead class="thead-light">
                                                             <tr>
-                                                                <td>Delivery Address:</td>
+                                                                <td class="form-label">Delivery Address:</td>
                                                                 <td colspan="4">
                                                                     <textarea class="form-control" id="fsm_Order_detail_delivery_address" name="Delivery Address"></textarea>
                                                                 </td>
-                                                                <td>Expected Date:</td>
+                                                                <td class="form-label">Expected Date:</td>
                                                                 <td colspan="3">
                                                                     <input type="date" class="form-control" id="fsm_Order_detail_expected_date" name="Expected Date">
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Ship Mode Name:</td>
+                                                                <td class="form-label">Ship Mode Name:</td>
                                                                 <td colspan="4">
                                                                     <input type="text" class="form-control" id="fsm_Order_detail_ship_mode_name" name="Ship Mode Name">
                                                                 </td>
-                                                                <td>Remarks:</td>
+                                                                <td class="form-label" >Remarks:</td>
                                                                 <td colspan="3">
                                                                     <textarea class="form-control" id="fsm_Order_detail_remarks" name="Remarks"></textarea>
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Total Product Amount:</td>
+                                                                <td class="form-label">Total Product Amount:</td>
                                                                 <td colspan="4">
                                                                     <input type="text" class="form-control" id="fsm_Order_detail_total_product_amount" name="Total Product Amount">
                                                                 </td>
-                                                                <td>GST:</td>
+                                                                <td class="form-label">GST:</td>
                                                                 <td colspan="3">
                                                                     <input type="text" class="form-control" id="fsm_Order_detail_gst" name="GST">
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Delivery Charges:</td>
+                                                                <td class="form-label">Delivery Charges:</td>
                                                                 <td colspan="4">
                                                                     <input type="text" class="form-control" id="fsm_Order_detail_delivery_charges" name="Delivery Charges">
                                                                 </td>
-                                                                <td>Total Amount:</td>
+                                                                <td class="form-label">Total Amount:</td>
                                                                 <td colspan="3">
                                                                     <input type="text" class="form-control" id="fsm_Order_detail_total_amount" name="Total Amount">
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Less Advance:</td>
+                                                                <td class="form-label">Less Advance:</td>
                                                                 <td colspan="4">
                                                                     <input type="text" class="form-control" id="fsm_Order_detail_less_advance" name="Less Advance">
                                                                 </td>
-                                                                <td>Balance:</td>
+                                                                <td class="form-label">Balance:</td>
                                                                 <td colspan="3">
                                                                     <input type="text" class="form-control" id="fsm_Order_detail_balance" name="Balance">
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td colspan="5">Approval Status:</td>
+                                                                <td colspan="5" class="form-label">Approval Status:</td>
                                                                 <td colspan="4">
                                                                     <select class="form-select" id="fsm_Order_detail_approval_status" name="Approval Status">
 																		<option>New Order</option>																	

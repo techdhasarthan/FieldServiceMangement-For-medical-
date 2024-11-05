@@ -39,12 +39,12 @@ function getUsersEntryForm(showType) {
             <div class="row">					
                 <div class="col-lg-12 offset-lg-0">
                     <div class="buy-form">
-                        <h4 class="page-title">Users Details</h4>
+                        <h2 class="page-title">Users Details</h2>
                         <div class="row">   
                             <!-- Centered Profile Image -->
                             <div class="col-12 text-center">
                                 <div class="profile-img">
-                                    <img class="avatar rounded-circle" src="/assets/img/user.jpg" alt="" id="user_entry_image_tag_id" style="width:150px; height:150px;border:1px solid grey;">
+                                    <img class="avatar rounded-circle" src="/assets/img/avatars/user.png" alt="" id="user_entry_image_tag_id" style="width:150px; height:150px;border:1px solid grey;">
                                     <div class="fileupload btn">
                                         <span class="btn-text">edit</span>
                                         <input class="upload" type="file" id="user_entry_image_input_id" accept="image/*" onchange="fileImageLoadSRC(event,'user_entry_image_tag_id')">

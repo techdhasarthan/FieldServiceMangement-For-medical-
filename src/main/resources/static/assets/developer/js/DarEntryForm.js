@@ -47,28 +47,28 @@ function getDarEntryForm(showType){
                             	<div class="row">
 									    <div class="col-12 col-lg-6">
 									        <div class="mb-3">
-									            <label for="fsm_dar_detail_darNO">DAR.NO</label>
+									            <label for="fsm_dar_detail_darNO" class="form-label">DAR.NO</label>
 									            <input type="hidden" class="form-control" id="fsm_dar_detail_uuid_id" name="UUID">
 									            <input type="text" class="form-control" id="fsm_dar_detail_darNO" name="darNO"  placeholder="Auto-Generate" disabled>
 									        </div>
 									        <div class="mb-3">
-									            <label for="fsm_dar_detail_darProcessDate">DAR Process Date</label>
+									            <label for="fsm_dar_detail_darProcessDate" class="form-label">DAR Process Date</label>
 									            <input type="date" class="form-control" id="fsm_dar_detail_darProcessDate" name="darProcessDate" data-mask="00/00/0000 00:00:00" autocomplete="off">
 									        </div>									        
 									        <div class="mb-3">
-									            <label for="fsm_dar_detail_stateCumArea">State Cum Area</label>
+									            <label for="fsm_dar_detail_stateCumArea" class="form-label">State Cum Area</label>
 									            <input type="text" class="form-control" id="fsm_dar_detail_stateCumArea" name="stateCumArea">
 									        </div>
 									        <div class="mb-3">
-									            <label for="fsm_dar_detail_plannedActivity">Planned Activity</label>
+									            <label for="fsm_dar_detail_plannedActivity" class="form-label">Planned Activity</label>
 									            <textarea class="form-control" id="fsm_dar_detail_plannedActivity" name="plannedActivity"></textarea>
 									        </div>
 									        <div class="mb-3">
-									            <label for="fsm_dar_detail_deliveryPlaceNameAndAddress">Delivery Place Name And Address</label>
+									            <label for="fsm_dar_detail_deliveryPlaceNameAndAddress" class="form-label">Delivery Place Name And Address</label>
 									            <textarea class="form-control" id="fsm_dar_detail_deliveryPlaceNameAndAddress" name="deliveryPlaceNameAndAddress"></textarea>
 									        </div>
 											<div class="mb-3">
-									            <label for="fsm_dar_detail_statusToVisit">Status To Visit</label>
+									            <label for="fsm_dar_detail_statusToVisit" class="form-label">Status To Visit</label>
 									            <select class="form-select" id="fsm_dar_detail_statusToVisit" name="statusinvisit">
 													<option></option>
 													<option>Demo success</option>
@@ -79,27 +79,27 @@ function getDarEntryForm(showType){
 									    
 									    <div class="col-12 col-lg-6">
 									        <div class="mb-3">
-									            <label for="fsm_dar_detail_clientName">Client Name</label>
+									            <label for="fsm_dar_detail_clientName" class="form-label">Client Name</label>
 									            <input type="text" class="form-control" id="fsm_dar_detail_clientName" name="clientName">
 									        </div>
 									        <div class="mb-3">
-									            <label for="fsm_dar_detail_clientMobileNO">Client Mobile No</label>
+									            <label for="fsm_dar_detail_clientMobileNO" class="form-label">Client Mobile No</label>
 									            <input type="text" class="form-control" id="fsm_dar_detail_clientMobileNO" name="clientMobileNO" data-mask="(00) 00000-0000">
 									        </div>
 									        <div class="mb-3">
-									            <label for="fsm_dar_detail_fromLocation">From Location</label>
+									            <label for="fsm_dar_detail_fromLocation" class="form-label">From Location</label>
 									            <input type="text" class="form-control" id="fsm_dar_detail_fromLocation" name="fromLocation">
 									        </div>
 									        <div class="mb-3">
-									            <label for="fsm_dar_detail_toLocation">To Location</label>
+									            <label for="fsm_dar_detail_toLocation" class="form-label">To Location</label>
 									            <input type="text" class="form-control" id="fsm_dar_detail_toLocation" name="toLocation">
 									        </div>
 									        <div class="mb-3">
-									            <label for="fsm_dar_detail_aboutTheClient">About the Client</label>
+									            <label for="fsm_dar_detail_aboutTheClient" class="form-label">About the Client</label>
 									            <textarea class="form-control" id="fsm_dar_detail_aboutTheClient" name="aboutTheClient"></textarea>
 									        </div>
 									        <div class="mb-3">
-									            <label for="fsm_dar_detail_productDetails">Product Details</label>
+									            <label for="fsm_dar_detail_productDetails" class="form-label">Product Details</label>
 									            <textarea class="form-control" id="fsm_dar_detail_productDetails" name="productDetails"></textarea>
 									        </div>
 									    </div>
@@ -123,18 +123,18 @@ function getDarEntryForm(showType){
 								                        <table class="table table-center table-hover datatable">
 								                            <thead class="thead-light">
 								                                <tr>
-								                                    <th>Serial No</th>
-								                                    <th>Expense Description</th>
-								                                    <th>Amount</th>
-								                                    <th>Image</th>
-								                                    <th>Delete</th>
+								                                    <th class="form-label">Serial No</th>
+								                                    <th class="form-label">Expense Description</th>
+								                                    <th class="form-label">Amount</th>
+								                                    <th class="form-label">Image</th>
+								                                    <th class="form-label">Delete</th>
 								                                </tr>
 								                            </thead>
 								                            <tbody id="expense_tbody_id"></tbody>
 								                            <tfoot>
 								                                <tr>
 								                                    <td colspan="1"></td>
-								                                    <td>Total Expense:</td>
+								                                    <td class="form-label">Total Expense:</td>
 								                                    <td colspan="2" id="total_expense_id">0.00</td>
 								                                </tr>
 								                            </tfoot>

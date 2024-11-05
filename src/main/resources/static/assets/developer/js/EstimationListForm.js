@@ -4,7 +4,7 @@ function getEstimationListForm(){
 	<div class="content">
 	    <div class="row mb-3">
 	        <div class="col-sm-4 col-3">
-	            <h4 class="page-title">Estimations Details</h4>
+	            <h2 class="page-title">Estimations Details</h2>
 	        </div>
 	        <div class="col-sm-8 col-9 text-end m-b-20">
 	            <a href="#" class="btn btn-primary float-right btn-rounded" onclick="getEstimationList('ests_list_form')">
