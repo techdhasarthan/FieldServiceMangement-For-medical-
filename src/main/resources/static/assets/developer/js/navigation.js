@@ -38,6 +38,7 @@ async function getProjectMenuFeatures(){
 	               ,"DAR":"fa fa-gift"
 	               ,"Estimation":"fa fa-donate"              
 	               ,"Order":"fa fa-envelope"
+				   ,"Payment":"fa fa-info-circle"
 	   			   ,"Default Properties": "fa fa-check-double"
 		   		};
 
@@ -50,7 +51,8 @@ async function getProjectMenuFeatures(){
            ,"DAR":"showDarListForm('')"
            ,"Estimation":"showEstimationListForm('')"              
            ,"Order":"showOrderListForm('')"
-		   ,"Default Properties": "showDefaultProperitesListForm('')"		
+		   ,"Payment":"showPaymentListForm('')"
+		   ,"Default Properties": "showDefaultPropertiesListForm('')"		
 	   };
 
 		await buildProjectMenu(parentElement, menuNameJsonObj, menuIconJsonObj, menuFunctionJsonObj);			

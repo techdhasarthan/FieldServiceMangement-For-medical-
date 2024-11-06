@@ -123,6 +123,7 @@
             <main class="content" id="est_entry_form"></main>
             <main class="content" id="order_list_form"></main>
             <main class="content" id="order_entry_form"></main>
+			<main class="content" id="defaultProperties_list_form"></main>			            
         </div>
     </div>
     
@@ -150,14 +151,14 @@
     var logginerProfileImage = document.getElementById("vResponse_login_profile_image_name").value;
     var logginerUserRights = document.getElementById("vResponse_login_user_rights").value;
 	
-    if(logginerUserId != ""){
-		window.addEventListener("load", () => {		  
+    if(logginerUserId != ""){		
+		window.addEventListener("load", () => {
+		  history.replaceState(null, "", window.location.href);				  
 		  history.pushState(null, "", window.location.href);
 		  window.addEventListener("popstate", (event) => {
 		    history.pushState(null, "", window.location.href);
 		  });
-		});
-
+		});	 
 	}
     document.getElementById("fsm_loginer_role_name").innerHTML = logginerRoleName;
     document.getElementById("fsm_loginer_user_id").innerHTML = logginerUserId;
@@ -188,6 +189,8 @@
 <script src="/assets/developer/js/EstimationEntryForm.js"></script>
 <script src="/assets/developer/js/OrderListForm.js"></script>
 <script src="/assets/developer/js/OrderEntryForm.js"></script>
+<script src="/assets/developer/js/DefaultPropertiesListForm.js"></script>
+<script src="/assets/developer/js/DefaultPropertiesEntryForm.js"></script>
 <script src="/assets/developer/js/jsonCheckableTreeCore.js"></script>
 <script src="/assets/developer/js/buildDataTableCore.js"></script>
 <script src="/assets/developer/js/formBuilder.js"></script>

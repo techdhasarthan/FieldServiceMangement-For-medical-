@@ -36,7 +36,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import com.sy.fsm.Model.DefaultPropertiesDetails;
 import com.sy.fsm.Model.CategoryDetails;
 import com.sy.fsm.Model.DarDetails;
 import com.sy.fsm.Model.DarExpensesDetails;
@@ -49,6 +49,7 @@ import com.sy.fsm.Model.UserDetails;
 import com.sy.fsm.Repository.CategoryDetailsRepository;
 import com.sy.fsm.Repository.DarDetailsRepository;
 import com.sy.fsm.Repository.DarExpensesDetailsRepository;
+import com.sy.fsm.Repository.DefaultPropertiesRepository;
 import com.sy.fsm.Repository.EstimationDetailsRepository;
 import com.sy.fsm.Repository.EstimationProductDetailsRepository;
 import com.sy.fsm.Repository.OrderDetailsRepository;
@@ -101,7 +102,8 @@ public class RestController {
 	@Autowired
 	OrderProductDetailsRepository orderProductDetailsRepository;
 	
-	
+	@Autowired
+	DefaultPropertiesRepository defaultPropertiesRepository;
         
     
     @RequestMapping(value = "/fsm/getCategoryDetailsList", method = RequestMethod.POST, consumes="application/json")
@@ -1679,6 +1681,135 @@ public class RestController {
 		    }
 		    return vResponse;
 		}
+		
+		/******************************************************update****************************************************/
+		@RequestMapping(value = "/fsm/updateDefaultPropertiesDetails", method = RequestMethod.POST, consumes="application/json")
+		public String updateDefaultPropertiesDetails(@RequestBody String payload) {
+			String vResponse =  "{\"status\":\"false\"}";
+			try {
+				JSONObject jObj = new JSONObject(payload);	
+				String idString = jObj.getString("ID");
+				String propertyName = jObj.getString("Property Name");
+				String propertyValue= jObj.getString("Property Value");
+				DefaultPropertiesDetails propertyDetails = null;			
+				if(!idString.equalsIgnoreCase("")) {
+					UUID id = UUID.fromString(idString);
+					Optional<DefaultPropertiesDetails> propertyDetailsRecord = defaultPropertiesRepository.findById(id);
+					if(propertyDetailsRecord.isPresent()){
+						propertyDetails = propertyDetailsRecord.get();
+						propertyDetails.setPropertyName(propertyName);
+						propertyDetails.setPropertyValue(propertyValue);
+						defaultPropertiesRepository.save(propertyDetails);
+						vResponse = "{\"status\":\"true\"}";
+					}											
+				}else {
+					ObjectMapper mapper = new ObjectMapper();
+					propertyDetails = mapper.readValue(jObj.toString(), DefaultPropertiesDetails.class);
+					propertyDetails.setId(UUID.randomUUID());
+					defaultPropertiesRepository.save(propertyDetails);
+					vResponse = "{\"status\":\"true\"}";	
+				}
+						
+			}catch(Exception e4) {
+				e4.printStackTrace();
+			}
+		    return vResponse;
+		}
+
+		/******************************************************List****************************************************/
+		@RequestMapping(value = "/fsm/getDefaultPropertiesList", method = RequestMethod.POST, consumes="application/json")
+		public String getDefaultPropertiesList(@RequestBody String payload) {
+			String vResponse =  "{\"status\":\"false\"}";
+			try {
+				System.out.println("/fsm/getDefaultPropertiesList:::::::" + payload);
+				JSONObject jObj = new JSONObject(payload);
+				String id = jObj.getString("ID");
+				System.out.println(id);
+				ObjectMapper mapper = new ObjectMapper();
+				List<DefaultPropertiesDetails> propertiesList = defaultPropertiesRepository.findAll();
+				String sourceString = mapper.writeValueAsString(propertiesList);
+				vResponse = "{\"status\":\"true\",\"data\":"+sourceString+"}";
+				
+			}catch(Exception e4) {
+				e4.printStackTrace();
+			}
+			System.out.println("vResponse:::::::" + vResponse);
+		    return vResponse;
+		}
+
+		/******************************************************edit****************************************************/
+		
+		@RequestMapping(value = "/fsm/editDefaultPropertiesDetails", method = RequestMethod.POST, consumes="application/json")
+		public String editDefaultPropertiesDetails(@RequestBody String payload) {
+			String vResponse =  "{\"status\":\"false\"}";
+			try {
+				System.out.println("/fsm/editDefaultPropertiesDetails::::::::::::::::"+payload);
+				JSONObject jObj = new JSONObject(payload);
+				String idString = jObj.getString("ID");
+				System.out.println(idString);
+				UUID id = UUID.fromString(idString);
+				ObjectMapper mapper = new ObjectMapper();
+				Optional<DefaultPropertiesDetails> propertyDetailsRecord = defaultPropertiesRepository.findById(id);
+				if(propertyDetailsRecord.isPresent()) {
+					DefaultPropertiesDetails propertyDetails = propertyDetailsRecord.get();
+					String sourceString = mapper.writeValueAsString(propertyDetails);
+					vResponse = "{\"status\":\"true\",\"data\":"+sourceString+"}";					
+				}			
+			}catch(Exception e4) {
+				e4.printStackTrace();			
+			}
+			System.out.println("vResponse:::::::" + vResponse);
+		    return vResponse;
+		}
+	/******************************************************Get by name****************************************************/
+		
+		@RequestMapping(value = "/fsm/getDefaultPropertyValuesByName", method = RequestMethod.POST, consumes="application/json")
+		public String getDefaultPropertyValuesByName(@RequestBody String payload) {
+			String vResponse =  "{\"status\":\"false\"}";
+			try {
+				System.out.println("/fsm/getDefaultPropertyValuesByName:::::::" + payload);
+				JSONObject jObj = new JSONObject(payload);
+				String propertyName = jObj.getString("Property Name");
+				System.out.println(propertyName);			
+				ObjectMapper mapper = new ObjectMapper();
+				Optional<DefaultPropertiesDetails> propertyDetailsRecord = defaultPropertiesRepository.findByPropertyName(propertyName);
+				if(propertyDetailsRecord.isPresent()) {
+					DefaultPropertiesDetails propertyDetails = propertyDetailsRecord.get();
+					String sourceString = mapper.writeValueAsString(propertyDetails);
+					vResponse = "{\"status\":\"true\",\"data\":"+sourceString+"}";
+					System.out.println(sourceString);
+				}			
+			}catch(Exception e4) {
+				e4.printStackTrace();			
+			}
+			System.out.println("vResponse:::::::" + vResponse);
+		    return vResponse;
+		}
+		/******************************************************delete****************************************************/
+		@RequestMapping(value = "/fsm/deleteDefaultPropertiesDetails", method = RequestMethod.POST, consumes="application/json")
+		public String deleteDefaultPropertiesDetails(@RequestBody String payload) {
+			String vResponse =  "{\"status\":\"false\"}";
+			try {
+				System.out.println("/fsm/deleteDefaultPropertiesDetails:::::::" + payload);
+				JSONObject jObj = new JSONObject(payload);
+				String idString = jObj.getString("ID");
+				System.out.println(idString);
+				UUID id = UUID.fromString(idString);
+				ObjectMapper mapper = new ObjectMapper();
+				Optional<DefaultPropertiesDetails> propertyDetailsRecord = defaultPropertiesRepository.findById(id);
+				if(propertyDetailsRecord.isPresent()) {
+					DefaultPropertiesDetails propertyDetails = propertyDetailsRecord.get();
+					defaultPropertiesRepository.delete(propertyDetails);
+					vResponse = "{\"status\":\"true\"}";
+					System.out.println("vResponse:::::::" + vResponse);
+				}			
+			}catch(Exception e4) {
+				e4.printStackTrace();			
+			}
+			
+		    return vResponse;
+		}
+		
 
 
 }

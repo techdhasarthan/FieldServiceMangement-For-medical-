@@ -41,11 +41,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sy.fsm.Model.CategoryDetails;
 import com.sy.fsm.Model.DarDetails;
 import com.sy.fsm.Model.DarExpensesDetails;
+import com.sy.fsm.Model.DefaultPropertiesDetails;
 import com.sy.fsm.Model.EstimationDetails;
 import com.sy.fsm.Model.EstimationProductDetails;
 import com.sy.fsm.Model.MobileCategoryDetails;
 import com.sy.fsm.Model.MobileDarDetails;
 import com.sy.fsm.Model.MobileDarExpensesDetails;
+import com.sy.fsm.Model.MobileDefaultPropertiesDetails;
 import com.sy.fsm.Model.MobileEstimationDetails;
 import com.sy.fsm.Model.MobileEstimationProductDetails;
 import com.sy.fsm.Model.MobileOrderDetails;
@@ -64,6 +66,7 @@ import com.sy.fsm.Repository.EstimationProductDetailsRepository;
 import com.sy.fsm.Repository.MobileCategoryDetailsRepository;
 import com.sy.fsm.Repository.MobileDarDetailsRepository;
 import com.sy.fsm.Repository.MobileDarExpensesDetailsRepository;
+import com.sy.fsm.Repository.MobileDefaultPropertiesRepository;
 import com.sy.fsm.Repository.MobileEstimationDetailsRepository;
 import com.sy.fsm.Repository.MobileEstimationProductDetailsRepository;
 import com.sy.fsm.Repository.MobileOrderDetailsRepository;
@@ -137,6 +140,9 @@ public class MobileRestController {
 	
 	@Autowired
 	MobileOrderProductDetailsRepository mobileOrderProductDetailsRepository;
+	
+	@Autowired
+	MobileDefaultPropertiesRepository mobileDefaultPropertiesRepository;
 	
 	@RequestMapping(value = "/fsm/customerSignIn", method = RequestMethod.POST, consumes="application/json")
 	public String customerSignIn(@RequestBody String payload) {
@@ -1050,8 +1056,51 @@ public class MobileRestController {
 	    System.out.println("VResponse :::" + vResponse);
 	    return vResponse;
 	}
-
 	
+	@RequestMapping(value = "/fsm/deleteMobileOrderProductsDetails", method = RequestMethod.POST, consumes="application/json")
+	public String deleteMobileOrderProductsDetails(@RequestBody String payload) {
+		String vResponse =  "{\"status\":\"false\"}";
+		try {
+			System.out.println("/fsm/deleteMobileOrderProductsDetails::::::::::"+payload);
+			JSONObject jObj = new JSONObject(payload);
+			String idString = jObj.getString("id");			
+			UUID id = UUID.fromString(idString);			
+			Optional<MobileOrderProductDetails> ordProductDetailsRecord = mobileOrderProductDetailsRepository.findById(id);			
+			if(ordProductDetailsRecord.isPresent()){					
+				MobileOrderProductDetails estProductDetails = ordProductDetailsRecord.get();
+				mobileOrderProductDetailsRepository.delete(estProductDetails);						
+				vResponse =  "{\"status\":\"true\"}";
+			}
+			
+		}catch(Exception e4) {
+			e4.printStackTrace();			
+		}
+		System.out.println("vResponse::::"+vResponse);
+	    return vResponse;
+	}
+	
+	
+	/******************************************************Get by name****************************************************/
+	@RequestMapping(value = "/fsm/getMobileDefaultPropertyValuesByName", method = RequestMethod.POST, consumes="application/json")
+	public String getMobileDefaultPropertyValuesByName(@RequestBody String payload) {
+		String vResponse =  "{\"status\":\"false\"}";
+		try {
+			JSONObject jObj = new JSONObject(payload);
+			String propertyName = jObj.getString("Property Name");
+			System.out.println(propertyName);			
+			ObjectMapper mapper = new ObjectMapper();
+			Optional<MobileDefaultPropertiesDetails> propertyDetailsRecord = mobileDefaultPropertiesRepository.findByPropertyName(propertyName);
+			if(propertyDetailsRecord.isPresent()) {
+				MobileDefaultPropertiesDetails propertyDetails = propertyDetailsRecord.get();
+				String sourceString = mapper.writeValueAsString(propertyDetails);
+				vResponse = "{\"status\":\"true\",\"data\":"+sourceString+"}";
+				System.out.println(sourceString);
+			}			
+		}catch(Exception e4) {
+			e4.printStackTrace();			
+		}
+	    return vResponse;
+	}
 	
 	
 	

@@ -10,7 +10,8 @@ function hideAllLayer(){
 	document.getElementById("est_list_form").style.display ="none";
 	document.getElementById("est_entry_form").style.display ="none";
 	document.getElementById("order_list_form").style.display ="none";
-	document.getElementById("order_entry_form").style.display ="none";		
+	document.getElementById("order_entry_form").style.display ="none";
+	document.getElementById("defaultProperties_list_form").style.display ="none";		
 };
 
 
@@ -24,7 +25,7 @@ window.document.body.onload = function(){
 		document.getElementById("dar_list_form").innerHTML = getDarListForm();
 		document.getElementById("est_list_form").innerHTML = getEstimationListForm();
 		document.getElementById("order_list_form").innerHTML = getOrderListForm();
-		
+		document.getElementById("defaultProperties_list_form").innerHTML = getDefaultPropertiesListForm();
 		
 		/*getDefaultPropertyValuesByName("Category");
 		getDefaultPropertyValuesByName("Branch");
@@ -83,5 +84,4 @@ function handleError(formName,error){
 function logOut(){
 	toastr.info("Sign Out","Info", {closeButton: !0,tapToDismiss: !1});
 	window.location.replace("/fsm/login");	
-	sessionStorage.removeItem("fromLogin");
 };

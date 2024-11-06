@@ -54,28 +54,28 @@ function getUsersEntryForm(showType) {
                         
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label>Users ID<span class="text-danger">*</span></label>
+                                    <label class="form-label">Users ID<span class="text-danger">*</span></label>
 									<input class="form-control" type="hidden" id="user_entry_user_uuid_txt" disabled>
                                     <input class="form-control" type="text" id="user_entry_user_id_txt" placeholder="Auto-Generate" disabled>
                                 </div>
 								<div class="form-group">
-                                   <label>User Name<span class="text-danger">*</span></label>
+                                   <label class="form-label">User Name<span class="text-danger">*</span></label>
                                    <input type="text" class="form-control" id="user_entry_user_name_txt">
                                </div>
                                 <div class="form-group">
-                                    <label>Password<span class="text-danger">*</span></label>
+                                    <label class="form-label">Password<span class="text-danger">*</span></label>
                                     <input class="form-control" type="password" id="user_entry_password_txt">
                                 </div>
                                 <div class="form-group">
-                                    <label>Email ID<span class="text-danger">*</span></label>
+                                    <label class="form-label">Email ID<span class="text-danger">*</span></label>
                                     <input type="email" class="form-control" id="user_entry_email_id_txt">
                                 </div>
                                 <div class="form-group">
-                                    <label>Phone No<span class="text-danger">*</span></label>
+                                    <label class="form-label">Phone No<span class="text-danger">*</span></label>
                                     <input type="tel" class="form-control" id="user_entry_phone_no_txt">
                                 </div>
 								<div class="form-group">
-                                    <label>Branch<span class="text-danger">*</span></label>
+                                    <label class="form-label">Branch<span class="text-danger">*</span></label>
                                     <select class="form-select" id="user_entry_branch_txt">
 										<option>Chennai</option>
 										<option>Trichy</option>
@@ -88,19 +88,19 @@ function getUsersEntryForm(showType) {
                             <!-- Right Side (Role and User Rights) -->
                             <div class="col-lg-6">
 								<div class="form-group">
-                                    <label>Leader User ID</label>
+                                    <label class="form-label">Leader User ID</label>
                                     <input class="form-control" type="text" id="user_entry_leader_user_id_txt" placeholder="System Process - Control" disabled>
                                 </div>
                             	 <div class="form-group">
-                                    <label>Rep Code<span class="text-danger">*</span></label>
+                                    <label class="form-label">Rep Code<span class="text-danger">*</span></label>
                                     <input class="form-control" type="text" id="user_entry_rep_code_txt">
                                 </div>
                                 <div class="form-group">
-                                    <label>Rep Account<span class="text-danger">*</span></label>
+                                    <label class="form-label">Rep Account<span class="text-danger">*</span></label>
                                     <input class="form-control" type="text" id="user_entry_rep_account_txt">
                                 </div>
                                 <div class="form-group">
-                                    <label>Users Role<span class="text-danger">*</span></label>
+                                    <label class="form-label">Users Role<span class="text-danger">*</span></label>
                                     <select class="form-select" id="user_entry_role_name_txt">
 										<option></option>
 										<option>RK</option>
@@ -119,7 +119,7 @@ function getUsersEntryForm(showType) {
 									</select>
                                 </div>
 								<div class="form-group">
-									<label>User Rights<span class="text-danger">*</span></label>
+									<label class="form-label">User Rights<span class="text-danger">*</span></label>
 								   <div class="form-group" id="fsm_user_rights_checkbox_tree_container"></div>
                                 </div>
                                 
@@ -426,7 +426,9 @@ function getUserRoleFeatures(formBodyContainerId){
 					,"Product":""
 					,"DAR":""
 					,"Estimation":""
-					,"Order":""								
+					,"Order":""
+					,"Payment":""
+					,"Default Properties":""								
 				  };
 	var vElement = document.getElementById(formBodyContainerId);
 	buildRolesTree(vElement,jsonObj);
