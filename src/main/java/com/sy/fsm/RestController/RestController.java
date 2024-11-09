@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -42,6 +43,8 @@ import com.sy.fsm.Model.DarDetails;
 import com.sy.fsm.Model.DarExpensesDetails;
 import com.sy.fsm.Model.EstimationDetails;
 import com.sy.fsm.Model.EstimationProductDetails;
+import com.sy.fsm.Model.MobileEstimationProductDetails;
+import com.sy.fsm.Model.MobileOrderProductDetails;
 import com.sy.fsm.Model.OrderDetails;
 import com.sy.fsm.Model.OrderProductDetails;
 import com.sy.fsm.Model.ProductDetails;
@@ -1606,7 +1609,7 @@ public class RestController {
 		        mapper.setDateFormat(sdf1);
 		        String sourceString = mapper.writeValueAsString(detailsList);
 		        vResponse = "{\"status\":\"true\",\"data\":" + sourceString + "}";
-		        System.out.println(sourceString);
+		        System.out.println(vResponse);
 		        
 		    } catch (Exception e) {
 		        e.printStackTrace();
@@ -1800,16 +1803,153 @@ public class RestController {
 				if(propertyDetailsRecord.isPresent()) {
 					DefaultPropertiesDetails propertyDetails = propertyDetailsRecord.get();
 					defaultPropertiesRepository.delete(propertyDetails);
-					vResponse = "{\"status\":\"true\"}";
-					System.out.println("vResponse:::::::" + vResponse);
+					vResponse = "{\"status\":\"true\"}";							
 				}			
 			}catch(Exception e4) {
 				e4.printStackTrace();			
 			}
-			
+			System.out.println("vResponse:::::::" + vResponse);
 		    return vResponse;
 		}
 		
+		@RequestMapping(value = "/fsm/updateEstimationDetailsInTableRow", method = RequestMethod.POST, consumes = "application/json")
+	    public String updateEstimationDetailsInTableRow(@RequestBody String payload) {
+	        String vResponse = "{\"status\":\"false\"}";
+	        try {
+	            System.out.println("/fsm/updateEstimationDetailsInTableRow:::::::" + payload);
+
+	            ObjectMapper mapper = new ObjectMapper();
+	            JSONObject jObj = new JSONObject(payload);
+	            String estimationIdString = jObj.getString("ID");
+	            String estimationStatus = jObj.getString("Estimation Status");
+	            String createdDateString = jObj.getString("Created Date");
+	            String createdBy = jObj.getString("Created By");
+	           
+	            Instant instant = Instant.parse(createdDateString);
+	            Timestamp createdDate = Timestamp.from(instant);
+	            UUID estimationId = UUID.fromString(estimationIdString);
+
+	            Optional<EstimationDetails> existingRecord = estimationDetailsRepository.findById(estimationId);
+	            if (existingRecord.isPresent()) {
+		            System.out.println("Existing Estimation Record Found");
+	                EstimationDetails newDetails = existingRecord.get();
+	                newDetails.setRegisterStatus(estimationStatus);
+	                newDetails.setCreatedDate(createdDate);
+	                newDetails.setCreatedBy(createdBy);
+	                estimationDetailsRepository.save(newDetails);
+	                vResponse = "{\"status\":\"true\"}";
+	                if (estimationStatus.equalsIgnoreCase("Convert To Order")) {	                		                    
+	                    String sourceString;	                    
+	                    Optional<OrderDetails> existingOrderRecord = orderDetailsRepository.findByEstNo(newDetails.getEstNO());
+	                    if (existingOrderRecord.isPresent()) {	                    	
+	                        System.out.println("existing Order Record found");
+	                        updateOrderDetailsInTableRow(existingOrderRecord.get(), newDetails, createdDate, createdBy);	                        
+	                        vResponse = "{\"status\":\"true\"}";	
+		                    
+	                    } else {
+	                        System.out.println("new Order Record Created");
+	                        OrderDetails orderDetails = new OrderDetails();
+	                        UUID orderId = UUID.randomUUID();
+	                        orderDetails.setId(orderId);
+	                        updateOrderDetailsInTableRow(orderDetails, newDetails, createdDate, createdBy);
+	                        orderDetailsRepository.save(orderDetails);	                        
+	                        boolean orderProductConvertStatus = convertToOrderStatusUpdateProductsDetailsInTableRow(estimationIdString, orderId.toString());
+	                        if (orderProductConvertStatus) {
+	                        	vResponse = "{\"status\":\"true\"}";	
+		                    }else {
+		                    	vResponse = "{\"status\":\"false\"}";
+		                    }
+	                    }
+	                    
+	                }
+	            }else {
+	            	vResponse = "{\"status\":\"false\", \"message\":\"An error occurred.\"}";
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            vResponse = "{\"status\":\"false\", \"message\":\"An error occurred.\"}";
+	        }
+	        System.out.println("VResponse :::" + vResponse);
+	        return vResponse;
+	    }
+		
+		
+		private OrderDetails updateOrderDetailsInTableRow(OrderDetails orderDetails, EstimationDetails newDetails, Timestamp createdDate, String createdBy) {
+	        orderDetails.seteNo("");
+	        orderDetails.setEstNo(newDetails.getEstNO());
+	        orderDetails.setOrderNo(orderDetailsRepository.generateOrderSequence());
+	        orderDetails.setSoNo("");
+	        orderDetails.setDdNo("");
+	        orderDetails.setCustomerName(newDetails.getCustomerName());
+	        orderDetails.setOrderProcessDate(new Timestamp(System.currentTimeMillis()));
+	        orderDetails.setRepCode(newDetails.getRepAttd());
+	        orderDetails.setBillingName("");
+	        orderDetails.setBillingAddress(newDetails.getBillingAddress());
+	        orderDetails.setCustomerCity(newDetails.getCustomerCity());
+	        orderDetails.setCustomerPinCode(newDetails.getCustomerPinCode());
+	        orderDetails.setCustomerPhone(newDetails.getCustomerPhone());
+	        orderDetails.setCustomerEmail(newDetails.getCustomerEmail());
+	        orderDetails.setDeliveryCity(newDetails.getDeliveryCity());
+	        orderDetails.setDemoPlan("");
+	        orderDetails.setPaymentCharges("");
+	        orderDetails.setPaymentTermDate(null);
+	        orderDetails.setWarranty(newDetails.getWarranty());
+	        orderDetails.setPanAndGst(newDetails.getPanAndGst());
+	        orderDetails.setDemoDate(null);
+	        orderDetails.setDeliveryAddress(newDetails.getDeliveryAddress());
+	        orderDetails.setDeliveryPinCode(newDetails.getDeliveryPinCode());
+	        orderDetails.setExpectedDate(null);
+	        orderDetails.setShipModeName("");
+	        orderDetails.setRemarks(newDetails.getRemarks());
+	        orderDetails.setItsHaveDiscount(newDetails.getItsHaveDiscount());
+	        orderDetails.setDiscountEstimate(newDetails.getDiscountEstimate());
+	        orderDetails.setDemoPieceEstimate(newDetails.getDemoPieceEstimate());
+	        orderDetails.setStockClearanceEstimate(newDetails.getStockClearanceEstimate());
+	        orderDetails.setDiscountAmount(newDetails.getDiscountAmount());
+	        orderDetails.setTotalProductAmount(newDetails.getTotalAmount());
+	        orderDetails.setGst(newDetails.getGst());
+	        orderDetails.setDeliveryCharges(newDetails.getDeliveryCharges());
+	        orderDetails.setTotalAmount(newDetails.getTotalAmount());
+	        orderDetails.setLessAdvance("");
+	        orderDetails.setBalance("");
+	        orderDetails.setRegisterStatus("New Order");
+	        orderDetails.setCreatedDate(createdDate);
+	        orderDetails.setCreatedBy(createdBy);
+	        return orderDetailsRepository.save(orderDetails);
+	    }
+
+	    public boolean convertToOrderStatusUpdateProductsDetailsInTableRow(String estimationIdString, String orderIdString) {
+	        boolean vResponse = false;
+	        try {
+	            System.out.println("Normal Method ConvertToOrderStatusUpdateProductsDetails:::::::");
+	            List<EstimationProductDetails> estProductDetailsList = estimationProductDetailsRepository.findByReferenceId(estimationIdString);
+	            List<OrderProductDetails> oldOrderProductDetailsList = orderProductDetailsRepository.findByReferenceId(orderIdString);
+	            if (!oldOrderProductDetailsList.isEmpty()) {
+	                orderProductDetailsRepository.deleteAll(oldOrderProductDetailsList);
+	            }
+	            List<OrderProductDetails> orderProductDetailsArrayList = new ArrayList<>();
+	            for (EstimationProductDetails estProductDetails : estProductDetailsList) {
+	                OrderProductDetails ordProducts = new OrderProductDetails();
+	                ordProducts.setId(UUID.randomUUID());
+	                ordProducts.setReferenceId(orderIdString);
+	                ordProducts.setProductType("");
+	                ordProducts.setProductDetails(estProductDetails.getProductDetails());
+	                ordProducts.setProductCode(estProductDetails.getProductCode());
+	                ordProducts.setQty(estProductDetails.getQty());
+	                ordProducts.setTax(estProductDetails.getTax());
+	                ordProducts.setUnitPrice(estProductDetails.getUnitPrice());
+	                ordProducts.setTotal(estProductDetails.getTotal());
+	                orderProductDetailsArrayList.add(ordProducts);
+	            }
+	            orderProductDetailsRepository.saveAll(orderProductDetailsArrayList);
+	            vResponse = true;
+	        } catch (Exception e) {
+	            vResponse = false;
+	            e.printStackTrace();
+	        }
+	        System.out.println("VResponse :::" + vResponse);
+	        return vResponse;
+	    }
 
 
 }

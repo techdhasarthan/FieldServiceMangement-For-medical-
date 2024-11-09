@@ -741,13 +741,14 @@ public class MobileRestController {
              
                Optional<MobileEstimationDetails> existingRecord = mobileEstimationDetailsRepository.findById(estimationId);	                
                if (existingRecord.isPresent()) {	                    
-                System.out.println("existingRecord found");
+                
                 MobileEstimationDetails newDetails = existingRecord.get();
                 if (estimationStatus.equalsIgnoreCase("Convert To Order")) {
                 		boolean orderProductConvertStatus = false;
                 		String sourceString = "";
                     	Optional<MobileOrderDetails> existingOrderRecord = mobileOrderDetailsRepository.findByEstNo(newDetails.getEstNO());
                     	if(existingOrderRecord.isPresent()) {
+                    		System.out.println("existingRecord found");
                     		MobileOrderDetails orderDetails = existingOrderRecord.get();
                     				orderDetails.seteNo("");  // Set fields according to your logic
                                     orderDetails.setEstNo(newDetails.getEstNO());
@@ -793,16 +794,17 @@ public class MobileRestController {
                                     mobileOrderDetailsRepository.save(orderDetails);
                                     
                                     sourceString =  mapper.writeValueAsString(orderDetails);
-                                    orderProductConvertStatus = convertToOrderStatusUpdateProductsDetailsInMobile(estimationIdString,newDetails.getId().toString());                                    
+                                    //orderProductConvertStatus = convertToOrderStatusUpdateProductsDetailsInMobile(estimationIdString,newDetails.getId().toString());
+                                    orderProductConvertStatus = true;
                                     if(orderProductConvertStatus) {
-                                    	List<MobileOrderProductDetails> ordProductDetailsList = mobileOrderProductDetailsRepository.findByReferenceId(newDetails.getId().toString());
+                                    	List<MobileOrderProductDetails> ordProductDetailsList = mobileOrderProductDetailsRepository.findByReferenceId(orderDetails.getId().toString());
                     					String estProductSourceString = mapper.writeValueAsString(ordProductDetailsList);				
                     					vResponse =  "{\"status\":\"true\",\"data\":"+sourceString+",\"ordProductData\":"+estProductSourceString+"}";
                                 	}else {
                                 		vResponse = "{\"status\":\"false\", \"message\":\"An error occurred.\"}";
                                 	}
                     	}else {
-                    	
+                    				System.out.println("new Record found");
                                     MobileOrderDetails orderDetails = new MobileOrderDetails();
                                     UUID orderId = UUID.randomUUID();
                                     orderDetails.setId(orderId);
@@ -885,7 +887,7 @@ public class MobileRestController {
         		ordProducts.setId(UUID.randomUUID());
         		ordProducts.setReferenceId(orderIdString);
         		ordProducts.setProductType("");	        		
-        		ordProducts.setProductDetails(estProductDetails.getProduct());
+        		ordProducts.setProduct(estProductDetails.getProduct());
         		ordProducts.setProductCode(estProductDetails.getSerialNo());
         		ordProducts.setQty(estProductDetails.getQty());	        		
         		ordProducts.setTax(estProductDetails.getTax());
@@ -1033,7 +1035,7 @@ public class MobileRestController {
 	                    MobileOrderProductDetails ordProductDetails = existingRecord.get();
 	                    ordProductDetails.setProductCode(newDetails.getProductCode());
 	                    ordProductDetails.setProductType(newDetails.getProductType());
-	                    ordProductDetails.setProductDetails(newDetails.getProductDetails());
+	                    ordProductDetails.setProduct(newDetails.getProduct());
 	                    ordProductDetails.setQty(newDetails.getQty());
 	                    ordProductDetails.setReferenceId(newDetails.getReferenceId());
 	                    ordProductDetails.setTax(newDetails.getTax());
@@ -1063,10 +1065,12 @@ public class MobileRestController {
 		try {
 			System.out.println("/fsm/deleteMobileOrderProductsDetails::::::::::"+payload);
 			JSONObject jObj = new JSONObject(payload);
-			String idString = jObj.getString("id");			
+			String idString = jObj.getString("id");
+			System.out.println("idString ::"+idString);
 			UUID id = UUID.fromString(idString);			
 			Optional<MobileOrderProductDetails> ordProductDetailsRecord = mobileOrderProductDetailsRepository.findById(id);			
-			if(ordProductDetailsRecord.isPresent()){					
+			if(ordProductDetailsRecord.isPresent()){
+				System.out.println("its present.....");
 				MobileOrderProductDetails estProductDetails = ordProductDetailsRecord.get();
 				mobileOrderProductDetailsRepository.delete(estProductDetails);						
 				vResponse =  "{\"status\":\"true\"}";
@@ -1085,8 +1089,9 @@ public class MobileRestController {
 	public String getMobileDefaultPropertyValuesByName(@RequestBody String payload) {
 		String vResponse =  "{\"status\":\"false\"}";
 		try {
+			System.out.println("/fsm/getMobileDefaultPropertyValuesByName::::::::::"+payload);
 			JSONObject jObj = new JSONObject(payload);
-			String propertyName = jObj.getString("Property Name");
+			String propertyName = jObj.getString("propertyName");
 			System.out.println(propertyName);			
 			ObjectMapper mapper = new ObjectMapper();
 			Optional<MobileDefaultPropertiesDetails> propertyDetailsRecord = mobileDefaultPropertiesRepository.findByPropertyName(propertyName);
@@ -1100,8 +1105,5 @@ public class MobileRestController {
 			e4.printStackTrace();			
 		}
 	    return vResponse;
-	}
-	
-	
-	
+	}	
 }

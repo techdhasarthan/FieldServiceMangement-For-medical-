@@ -36,7 +36,7 @@ function getUsersListForm(){
 	                        </div>
 	                        <div class="col-md-3">
 	                            <label for="users_list_filter_roleName" class="form-label">Role Name</label>
-	                            <input type="text" class="form-control" id="users_list_filter_roleName" placeholder="Enter Role Name" autocomplete="off">
+	                            <select class="form-select" id="users_list_filter_roleName" autocomplete="off"></select>
 	                        </div>
 	                        <div class="col-md-3">
 	                            <label for="users_list_filter_branchName" class="form-label">Branch Name</label>
@@ -91,6 +91,7 @@ function showUsersListForm(backMethod){
 		if(backMethod != "true"){		
 			getUsersList(containerId);	
 		}		
+		createOptionTagInSelectTag("users_list_filter_roleName",users_UserRolesArrayString);
     }catch(exp){
         alert(exp);
 		toastr.error(exp,"Error", {closeButton: !0,tapToDismiss: !1});

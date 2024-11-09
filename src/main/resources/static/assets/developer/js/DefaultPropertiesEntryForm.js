@@ -1,4 +1,14 @@
-function getDefaultPropertiesEntryForm(){
+var dar_plannedActivityArrayString = "";
+var dar_StatusToVisitArrayString = "";
+var users_UserRolesArrayString = "";
+var estimation_ApprovalStatusArrayString = "";
+var order_ApprovalStatusArrayString= "";
+
+function getDefaultPropertiesEntryForm(action){
+	var control = "";
+	if(action == 'edit'){
+		control = "disabled";	
+	}
 	
 	var form = `<div class="modal fade show" id="" tabindex="-1" role="dialog" style="display: block;" aria-modal="true">
 					<div class="modal-dialog modal-dialog-centered" role="document">
@@ -11,10 +21,10 @@ function getDefaultPropertiesEntryForm(){
 									<div class="mb-3">
 										<label class="form-label">Property Name</label>
 										<input type="hidden" class="form-control" placeholder="Enter the new DefaultProperties" id="fsm_default_properties_uuid_id">
-										<input type="text" class="form-control" placeholder="Enter the new Property Name" id="fsm_default_properties_property_name">								
+										<input type="text" class="form-control" placeholder="Enter the new Property Name" id="fsm_default_properties_property_name" `+control+`>								
 									</div>	
 									<div class="mb-3">
-										<label class="form-label">Property Value</label>										
+										<label class="form-label">Property Value (Multiple values seperated by symbol ',')</label>										
 										<textarea class="form-control" placeholder="Enter the new property value" id="fsm_default_properties_property_value"></textarea>
 									</div>									
 								</div>
@@ -37,7 +47,7 @@ function closeDefaultPropertiesEntryForm(){
 function showDefaultPropertiesEntryForm(action){
     try{        
 		var containerId = "transparent_general_form_container_id";
-        document.getElementById(containerId).innerHTML = getDefaultPropertiesEntryForm();
+        document.getElementById(containerId).innerHTML = getDefaultPropertiesEntryForm(action);
 		if(action == "edit"){			
 			document.getElementById("fsm_default_properties_delete_btn").style.display = "block";
 		}
@@ -56,10 +66,10 @@ async function updateDefaultPropertiesDetails(){
 	jsonObj['ID'] = document.getElementById("fsm_default_properties_uuid_id").value;
     jsonObj['Property Name'] = document.getElementById("fsm_default_properties_property_name").value;
 	jsonObj['Property Value'] = document.getElementById("fsm_default_properties_property_value").value;				  
-	/*var inputNames = "DefaultProperties"; 
+	var inputNames = "Property Name"; 
 	var inputTypes = "text";
-	var inputElementIds = "fsm_category_details_new_category";
-	canContinue ? canContinue = await checkValidationDynamicInputRow(inputNames,inputTypes,inputElementIds): canContinue = false;*/
+	var inputElementIds = "fsm_default_properties_property_name";
+	canContinue ? canContinue = await checkValidationDynamicInputRow(inputNames,inputTypes,inputElementIds): canContinue = false;
 	if(canContinue){  		
 	    let url = "/fsm/updateDefaultPropertiesDetails";
 		let itemName = "updateDefaultPropertiesDetails";
@@ -147,8 +157,51 @@ async function deleteDefaultPropertiesDetails(vObj){
 
 function populateDeleteDefaultPropertiesDetailsVResponse(vResponseObj){
     if(vResponseObj.status == "true"){			
-		toastr.success("Deleted Successfully","Completed", {closeButton: !0,tapToDismiss: !1});
-		closeDefaultPropertiesEntryForm();	
+		toastr.success("Deleted Successfully","Completed", {closeButton: !0,tapToDismiss: !1});		
+		closeDefaultPropertiesEntryForm();
 		showDefaultPropertiesListForm('');		    		    		   	
 	}
+};
+
+
+function getDefaultPropertyValuesByName(propertyName){
+	var jsonObj = JSON.parse("{}");	
+	jsonObj['Property Name'] = propertyName;
+	
+	let url = "/fsm/getDefaultPropertyValuesByName";
+	let itemName= "getDefaultPropertyValuesByName";
+    getDataFromServicePoint(url,jsonObj)
+        .then(data => populateDefaultPropertyValuesByNameVResponse(data,propertyName)) 
+        .catch(error => handleError(itemName,error));	
+				
+};
+
+function populateDefaultPropertyValuesByNameVResponse(vResponseObj,propertyName){
+	
+    if(vResponseObj.status == "true"){
+		var dataObj = vResponseObj.data;
+		
+		if(propertyName == "DAR - Planned Activity"){
+			dar_plannedActivityArrayString = dataObj['Property Value'];	
+		}else if(propertyName == "DAR - Status To Visit"){
+			dar_StatusToVisitArrayString = dataObj['Property Value'];			
+		}else if(propertyName == "Users - User Roles"){			
+			users_UserRolesArrayString = dataObj['Property Value'];						
+		}else if(propertyName == "Estimation - Approval Status"){
+			estimation_ApprovalStatusArrayString = dataObj['Property Value'];							
+		}else if(propertyName == "Order - Approval Status"){
+			order_ApprovalStatusArrayString = dataObj['Property Value'];			
+		}
+	}
+};
+
+function createOptionTagInSelectTag(selectTagId,propValuesString){
+	var propValuesArray = propValuesString.split(",");
+	var optionArray = new Array();
+	for(var gg = 0 ; gg < propValuesArray.length;gg++){
+		var optionTag = `<option>`+propValuesArray[gg]+`</option>`;
+		optionArray.push(optionTag);	
+	}
+	var optionArrayHTML = optionArray.join("");
+	document.getElementById(selectTagId).innerHTML = optionArrayHTML;
 };

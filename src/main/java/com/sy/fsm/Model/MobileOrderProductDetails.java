@@ -29,7 +29,7 @@ public class MobileOrderProductDetails	 {
 	public String productType;
 	
 	@Column(name = "product_details")
-	public String productDetails;
+	public String product;
 	
 	@Column(name = "product_code")
 	public String productCode;
@@ -70,12 +70,12 @@ public class MobileOrderProductDetails	 {
 		this.productType = productType;
 	}
 
-	public String getProductDetails() {
-		return productDetails;
+	public String getProduct() {
+		return product;
 	}
 
-	public void setProductDetails(String productDetails) {
-		this.productDetails = productDetails;
+	public void setProduct(String product) {
+		this.product = product;
 	}
 
 	public String getProductCode() {
@@ -118,13 +118,13 @@ public class MobileOrderProductDetails	 {
 		this.total = total;
 	}
 
-	public MobileOrderProductDetails(UUID id, String referenceId, String productType, String productDetails,
+	public MobileOrderProductDetails(UUID id, String referenceId, String productType, String product,
 			String productCode, int qty, int unitPrice, int tax, float total) {
 		super();
 		this.id = id;
 		this.referenceId = referenceId;
 		this.productType = productType;
-		this.productDetails = productDetails;
+		this.product = product;
 		this.productCode = productCode;
 		this.qty = qty;
 		this.unitPrice = unitPrice;
@@ -135,7 +135,10 @@ public class MobileOrderProductDetails	 {
 	public MobileOrderProductDetails() {
 		super();
 	}
+	
+	
 
+	
 		
 	
 }

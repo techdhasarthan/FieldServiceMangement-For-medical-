@@ -146,6 +146,7 @@ function showOrderListForm(backMethod){
 		if(backMethod != "true"){		
 			getOrderList(containerId);	
 		}		
+		createOptionTagInSelectTag("order_list_filter_orderStatus",order_ApprovalStatusArrayString);
     }catch(exp){
         alert(exp);
 		toastr.error(exp,"Error", {closeButton: !0,tapToDismiss: !1});
@@ -192,7 +193,8 @@ async function populateOrderListVResponse(vResponse,containerId){
 	*/
 	
 	if(vResponse.status == "true"){		
-			var dataArray = vResponse.data;		
+			var dataArray = vResponse.data;	
+			var exportFunction = "exportJasperReportInOrderInTableRow(this)";	
 			var editFunction = "editOrderDetails(this)";
 			var deleteFunction = "deleteOrderDetails(this)";
 			selectRecordStr = "";
@@ -206,8 +208,10 @@ async function populateOrderListVResponse(vResponse,containerId){
 				,"Payment Received":"badge badge-subtle-success"
 				,"New Order":"badge badge-subtle-warning"
 			};
+			var selectOptionsMapping = {};
+			var selectOptionsBasedOnChangeFunciton = "";
 			var tableId = containerId+"_table_id";		
-			document.getElementById("order_list_table_container").innerHTML = await createDataTableWithCheckboxEditAndDelete(vResponse, editFunction, deleteFunction, tableId, selectRecordStr, idField, imageOrStatusKeyJsonObj,statusClassMapping);
+			document.getElementById("order_list_table_container").innerHTML = await await createDataTableWithCheckboxEdit_Delete_DropDown(vResponse,exportFunction, editFunction, deleteFunction, tableId, selectRecordStr, idField, imageOrStatusKeyJsonObj, statusClassMapping, selectOptionsMapping,selectOptionsBasedOnChangeFunciton);
 			if(dataArray.length > 0){
 				await $("#"+tableId).DataTable({				
 				                "searching": true,  
@@ -280,3 +284,18 @@ function clearOrderFilters() {
     document.getElementById('order_list_filter_form').reset();
 };
 	
+
+async function exportJasperReportInOrderInTableRow(vObj){
+	
+	var jsonObj = JSON.parse("{}");	
+	jsonObj['estNo'] = vObj.parentNode.parentNode.childNodes[3].innerHTML; 
+	jsonObj['reportType'] = vObj.previousSibling.value; 	 	
+		
+	let url = "/fsm/exportJasperReportInOrder";
+	let itemName= "exportJasperReportInOrder";
+    getDataFromServicePoint(url,jsonObj)
+        .then(data => populateExportJasperReportInOrderVResponse(data,jsonObj['reportType'])) 
+        .catch(error => handleError(itemName,error));     
+	       		
+};
+

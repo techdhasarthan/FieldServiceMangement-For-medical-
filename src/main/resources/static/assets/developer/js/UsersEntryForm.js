@@ -174,7 +174,7 @@ function showUsersEntryForm(action){
 			generateForUsersId();
 		}
         document.getElementById(containerId).style.display = "block";
-		
+		createOptionTagInSelectTag("user_entry_role_name_txt",users_UserRolesArrayString);
 		getUserRoleFeatures("fsm_user_rights_checkbox_tree_container");
     }catch(exp){        
 		toastr.error(exp,"Error", {closeButton: !0,tapToDismiss: !1});

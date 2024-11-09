@@ -116,15 +116,8 @@ function getEstimationEntryForm(showType){
 									            <input type="text" class="form-control" id="fsm_Estimation_detail_delivery_pin_code" name="Delivery Pin code">
 									        </div>
 									        <div class="mb-3">
-									            <label for="fsm_Estimation_detail_warrantly" class="form-label">Warrantly</label>
-									            <select class="form-select" id="fsm_Estimation_detail_warrantly" name="Warrantly">
-													<option>6 Months</option>
-													<option>1 Yrs</option>
-													<option>2 Yrs</option>
-													<option>3 Yrs</option>
-													<option>4 Yrs</option>
-													<option>5 Yrs</option>
-												</select>
+									            <label for="fsm_Estimation_detail_warrantly" class="form-label">Warrenty</label>
+									            <input type="text" class="form-control" id="fsm_Estimation_detail_warrantly" name="Warrenty" />
 									        </div>
 									        <div class="mb-3">
 									            <label for="fsm_Estimation_detail_Pan_and_gst" class="form-label">Pan / GST</label>
@@ -159,7 +152,7 @@ function getEstimationEntryForm(showType){
 								                                    <th class="form-label">Pdt.sl.code</th>
 								                                    <th class="form-label">Qty</th>
 								                                    <th class="form-label">Unit Price</th>
-								                                    <th class="form-label">Tax</th>
+								                                    <th class="form-label">Tax %</th>
 								                                    <th class="form-label">Total</th>
 								                                    <th class="form-label">Delete</th>
 								                                </tr>
@@ -297,7 +290,8 @@ function showEstimationEntryForm(showType){
 			getUUIDForEstimationDetails();	
 		}else{
 			document.getElementById("estimation_form_export_element_row").style.display="block";
-		}						
+		}	
+		createOptionTagInSelectTag("fsm_Estimation_detail_approval_status1",estimation_ApprovalStatusArrayString);						
     }catch(exp){        
 		toastr.error(exp,"Error", {closeButton: !0,tapToDismiss: !1});
     }
@@ -547,7 +541,8 @@ function calculateRowTotal(inputElement) {
     const unitPrice = parseFloat(row.querySelector('input[name="ProductUnitPrice"]').value) || 0;
     const tax = parseFloat(row.querySelector('input[name="ProductTax"]').value) || 0;
 
-    const total = (qty * unitPrice) + tax;
+	const taxPercent = (qty*unitPrice )*tax/100;
+	const total = (qty * unitPrice) + taxPercent;
 
     row.querySelector('input[name="ProductTotal"]').value = total.toFixed(2);
     updateTotalProducts();
@@ -814,7 +809,7 @@ async function exportJasperReportInEstimation(){
 		let url = "/fsm/exportJasperReportInEstimation";
 		let itemName= "exportJasperReportInEstimation";
 	    getDataFromServicePoint(url,jsonObj)
-	        .then(data => populateExportJasperReportInEstimationVResponse(data,jsonObj['Report Type'])) 
+	        .then(data => populateExportJasperReportInEstimationVResponse(data,jsonObj['reportType'])) 
 	        .catch(error => handleError(itemName,error));	
 	}catch(exp){
 		toastr.info(exp,"Info", {closeButton: !0,tapToDismiss: !1});

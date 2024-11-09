@@ -107,7 +107,8 @@ function showDarListForm(backMethod){
         document.getElementById(containerId).style.display = "block";
 		if(backMethod != "true"){		
 			getDarList(containerId);	
-		}		
+		}							
+		createOptionTagInSelectTag("dar_list_filter_statusToVisit",dar_StatusToVisitArrayString);		
     }catch(exp){
         alert(exp);
 		toastr.error(exp,"Error", {closeButton: !0,tapToDismiss: !1});
@@ -127,31 +128,7 @@ async function getDarList(containerId){
 
 
 async function populateDarListVResponse(vResponse,containerId){		
-    /*if(vResponse.status == "true"){
-		var dataArray = vResponse.data;		
-		var editFunction = "editDarDetails(this)";
-		var deleteFunction = "deleteDarDetails(this)";
-		var tableId = containerId+"_table_id";
-		document.getElementById("dar_list_table_container").innerHTML = await createDataTable(vResponse,editFunction,deleteFunction,tableId);
-		if(dataArray.length > 0){
-			await $("#"+tableId).DataTable({				
-			                "searching": true,  
-			                "paging": true,     
-			                "info": true,       
-			                "lengthChange": true,
-			                "autoWidth": false,  
-							"pageLength": 10, 
-			                "columnDefs": [
-			                    { "orderable": false, "targets": -1 }
-								,{
-					             "targets": [0], 
-								 "className": "hidden-column" 
-					        	} 
-			                ]		
-			         });						
-		}			        	 	      	
-	}*/
-	
+   
 	if(vResponse.status == "true"){		
 			var dataArray = vResponse.data;		
 			var editFunction = "editDarDetails(this)";
@@ -167,6 +144,7 @@ async function populateDarListVResponse(vResponse,containerId){
 			};
 			var tableId = containerId+"_table_id";		
 			document.getElementById("dar_list_table_container").innerHTML = await createDataTableWithCheckboxEditAndDelete(vResponse, editFunction, deleteFunction, tableId, selectRecordStr, idField, imageOrStatusKeyJsonObj,statusClassMapping);
+			
 			if(dataArray.length > 0){
 				await $("#"+tableId).DataTable({				
 				                "searching": true,  

@@ -154,15 +154,8 @@ function getOrderEntryForm(showType){
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="fsm_order_detail_warranty" class="form-label">Warranty</label>
-                                            <select class="form-select" id="fsm_order_detail_warranty" name="Warranty">
-                                                <option>6 Months</option>
-                                                <option>1 Year</option>
-                                                <option>2 Years</option>
-                                                <option>3 Years</option>
-                                                <option>4 Years</option>
-                                                <option>5 Years</option>
-                                            </select>
+                                            <label for="fsm_order_detail_warranty" class="form-label">Warranty</label>                                            
+											<input type="text" class="form-control" id="fsm_order_detail_warranty" name="Warrenty" />
                                         </div>
 
                                         <div class="mb-3">
@@ -215,7 +208,7 @@ function getOrderEntryForm(showType){
                                                                 <th class="form-label">Pdt.sl.code</th>
                                                                 <th class="form-label">Qty</th>
                                                                 <th class="form-label">Unit Price</th>
-                                                                <th class="form-label">Tax</th>
+                                                                <th class="form-label">Tax %</th>
                                                                 <th class="form-label">Total</th>
                                                                 <th class="form-label">Delete</th>
                                                             </tr>
@@ -328,7 +321,8 @@ function showOrderEntryForm(showType){
 		getProductListToDatalistTagOption();
 		if(showType != 'edit'){
 			getUUIDForOrderDetails();	
-		}						
+		}		
+		createOptionTagInSelectTag("fsm_Order_detail_approval_status",order_ApprovalStatusArrayString);				
     }catch(exp){        
 		toastr.error(exp,"Error", {closeButton: !0,tapToDismiss: !1});
     }
@@ -612,8 +606,8 @@ function calculateRowTotal(inputElement) {
     const qty = parseFloat(row.querySelector('input[name="ProductQty"]').value) || 0;
     const unitPrice = parseFloat(row.querySelector('input[name="ProductUnitPrice"]').value) || 0;
     const tax = parseFloat(row.querySelector('input[name="ProductTax"]').value) || 0;
-
-    const total = (qty * unitPrice) + tax;
+	const taxPercent = (qty * unitPrice) * tax/100;
+    const total = (qty * unitPrice) + taxPercent;
 
     row.querySelector('input[name="ProductTotal"]').value = total.toFixed(2);
     updateTotalOrderProducts();
@@ -643,11 +637,11 @@ function loadOrderProductRowsFromJson(jsonData) {
 
     jsonData.forEach((item) => {
         const newRow = document.createElement("tr");
-		var options = `<option></option><option>stock</option><option>salse</option>`;
+		var options = `<option></option><option>Stock</option><option>Sale</option>`;
 		if(item['Product Type'] == "stock"){
-			options = `<option></option><option selected>stock</option><option>salse</option>`;
+			options = `<option></option><option selected>Stock</option><option>Sale</option>`;
 		}else if(item['Product Type'] == "sale"){
-			options = `<option></option><option>stock</option><option selected>salse</option>`;
+			options = `<option></option><option>Stock</option><option selected>Sale</option>`;
 		}
         newRow.innerHTML = `<td><input 
                 type="hidden" name="ID" class="form-control" value="${item['ID']}" placeholder="ID" /><input 
@@ -867,7 +861,7 @@ async function exportJasperReportInOrder(){
 	let url = "/fsm/exportJasperReportInOrder";
 	let itemName= "exportJasperReportInOrder";
     getDataFromServicePoint(url,jsonObj)
-        .then(data => populateExportJasperReportInOrderVResponse(data,jsonObj['Report Type'])) 
+        .then(data => populateExportJasperReportInOrderVResponse(data,jsonObj['reportType'])) 
         .catch(error => handleError(itemName,error));     
 	       		
 };

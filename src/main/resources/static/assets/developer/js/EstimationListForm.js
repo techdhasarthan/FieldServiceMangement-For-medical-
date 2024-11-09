@@ -53,6 +53,7 @@ function getEstimationListForm(){
 	                        <div class="col-md-3">
 	                            <label for="estimation_list_filter_itsHaveDiscount" class="form-label">Has Discount</label>	                            
 								<select class="form-select" id="estimation_list_filter_itsHaveDiscount" name="Approval Status">
+									<option></option>	
 									<option>Yes</option>
 									<option>No</option>										
 								</select>
@@ -115,6 +116,7 @@ function showEstimationListForm(backMethod){
 		if(backMethod != "true"){		
 			getEstimationList(containerId);	
 		}		
+		createOptionTagInSelectTag("fsm_Estimation_detail_approval_status",estimation_ApprovalStatusArrayString);
     }catch(exp){
         alert(exp);
 		toastr.error(exp,"Error", {closeButton: !0,tapToDismiss: !1});
@@ -134,49 +136,28 @@ async function getEstimationList(containerId){
 
 
 async function populateEstimationListVResponse(vResponse,containerId){		
-    /*if(vResponse.status == "true"){
-		var dataArray = vResponse.data;		
-		var editFunction = "editEstimationDetails(this)";
-		var deleteFunction = "deleteEstimationDetails(this)";
-		var tableId = containerId+"_table_id";
-		document.getElementById("est_list_table_container").innerHTML = await createDataTable(vResponse,editFunction,deleteFunction,tableId);
-		if(dataArray.length > 0){
-			await $("#"+tableId).DataTable({				
-			                "searching": true,  
-			                "paging": true,     
-			                "info": true,       
-			                "lengthChange": true,
-			                "autoWidth": false,  
-							"pageLength": 10, 
-			                "columnDefs": [
-			                    { "orderable": false, "targets": -1 }
-								,{
-					             "targets": [0], 
-								 "className": "hidden-column" 
-					        	} 
-			                ]		
-			         });						
-		}			        	 	      	
-	}*/
+
 	
 	
 	if(vResponse.status == "true"){		
-				var dataArray = vResponse.data;		
+				var dataArray = vResponse.data;
+				var exportFunction = "exportJasperReportInEstimationInTableRow(this)";		
 				var editFunction = "editEstimationDetails(this)";
 				var deleteFunction = "deleteEstimationDetails(this)";
 				selectRecordStr = "";
 				var idField = "ID";
-				var imageOrStatusKeyJsonObj = {		
-					status:"Register Status"
+				var imageOrStatusKeyJsonObj = {							
 				};
-				var statusClassMapping = {
-					"Estimation Enquiry":"badge badge-subtle-info"
-					,"Cancel Estimation":"badge badge-subtle-danger"
-					,"Convert To Order":"badge badge-subtle-success"
-					,"Not Matured":"badge badge-subtle-warning"
+				var statusClassMapping = {					
 				};
+				var selectOptionsMapping = {
+					"Register Status": estimation_ApprovalStatusArrayString.split(",")
+				};
+				
+				var selectOptionsBasedOnChangeFunciton = "updateEstimationDetailsInTableRow(this)";
+				
 				var tableId = containerId+"_table_id";		
-				document.getElementById("est_list_table_container").innerHTML = await createDataTableWithCheckboxEditAndDelete(vResponse, editFunction, deleteFunction, tableId, selectRecordStr, idField, imageOrStatusKeyJsonObj,statusClassMapping);
+				document.getElementById("est_list_table_container").innerHTML = await createDataTableWithCheckboxEdit_Delete_DropDown(vResponse,exportFunction, editFunction, deleteFunction, tableId, selectRecordStr, idField, imageOrStatusKeyJsonObj, statusClassMapping, selectOptionsMapping,selectOptionsBasedOnChangeFunciton);
 				if(dataArray.length > 0){
 					await $("#"+tableId).DataTable({				
 					                "searching": true,  
@@ -235,4 +216,58 @@ async function filterEstimation() {
         .then(data => populateEstimationListVResponse(data, "est_list_form"))
         .catch(error => handleError("filterEstimation", error));
 };
+
+
+
+
+async function updateEstimationDetailsInTableRow(vObj){	
+		
+	var jsonObj = JSON.parse("{}");	
+	jsonObj['ID'] = vObj.parentNode.parentNode.childNodes[1].innerHTML;	    
+	jsonObj['Estimation Status'] = vObj.value;	
+	jsonObj['Created Date'] = new Date().toISOString();
+	jsonObj['Created By'] = logginerUserId;  
+	swal({
+	        title: "Confirmation",
+	        text: "Do you want to Update Status ?",
+	        icon: "info",
+	        buttons: true,
+	        dangerMode: true,
+	 }).then((confirmation) => {
+	        if (confirmation) {		  		
+    			let url = "/fsm/updateEstimationDetailsInTableRow";
+				let itemName = "updateEstimationDetailsInTableRow";
+    			getDataFromServicePoint(url,jsonObj)
+        			.then(async data => await populateUpdateEstimationDetailsInTableRowVResponse(data)) 
+        			.catch(error => handleError(itemName,error));
+			}
+	 });	
+};
+
+async function populateUpdateEstimationDetailsInTableRowVResponse(vResponseObj){
+    if(vResponseObj.status == "true"){			
+		toastr.success("Successfully Updated","Status Changed", {closeButton: !0,tapToDismiss: !1});
+	}else{
+		toastr.warning("Invalid Estimation Details","Warning", {closeButton: !0,tapToDismiss: !1});
+	}
+};
+
+
+async function exportJasperReportInEstimationInTableRow(vObj){
+	try{
+		var jsonObj = JSON.parse("{}");	
+		jsonObj['estNo'] = vObj.parentNode.parentNode.childNodes[2].innerHTML; 
+		jsonObj['reportType'] = vObj.previousSibling.value; 	
+			
+		let url = "/fsm/exportJasperReportInEstimation";
+		let itemName= "exportJasperReportInEstimation";
+	    getDataFromServicePoint(url,jsonObj)
+	        .then(data => populateExportJasperReportInEstimationVResponse(data,jsonObj['reportType'])) 
+	        .catch(error => handleError(itemName,error));	
+	}catch(exp){
+		toastr.info(exp,"Info", {closeButton: !0,tapToDismiss: !1});
+	}
+	     	       		
+};
+
 

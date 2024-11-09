@@ -38,7 +38,7 @@ async function getProjectMenuFeatures(){
 	               ,"DAR":"fa fa-gift"
 	               ,"Estimation":"fa fa-donate"              
 	               ,"Order":"fa fa-envelope"
-				   ,"Payment":"fa fa-info-circle"
+				   ,"Payment":"fa fa-dollar"
 	   			   ,"Default Properties": "fa fa-check-double"
 		   		};
 

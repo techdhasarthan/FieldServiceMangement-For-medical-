@@ -43,6 +43,10 @@
 		<input type="hidden"  th:value="${status}" id="vResponse_login_status" name="status" />
 		<input type="hidden"  th:value="${validateMessage}" id="vResponse_login_validate_message" name="validateMessage" />
 	</form>
+	<form action="/error" method="post" >
+		<input type="hidden"  th:value="${errorName}" id="vResponse_error_errorName" name="errorName" />
+		<input type="hidden"  th:value="${message}" id="vResponse_error_message" name="message" />
+	</form>
 	<div class="container-fluid p-0">
 		<div class="row g-0">
 			<div class="col-xl-6 d-none d-xl-flex">
@@ -100,6 +104,15 @@
 	<script src="/assets/js/jquery.slimscroll.js"></script>	
 	<script src="/assets/js/app.js"></script>
 	<script type="text/javascript">
+		window.addEventListener("load", () => {
+		  history.replaceState(null, "", window.location.href);				  
+		  history.pushState(null, "", window.location.href);
+		  window.addEventListener("popstate", (event) => {
+		    history.pushState(null, "", window.location.href);
+		  });
+		});	   
+		
+		/****************************************************************************************/
 		var vResponseLoginStatus = document.getElementById("vResponse_login_status").value;
 		var alertMessage 		= document.getElementById("vResponse_login_validate_message").value;						
 		var loginAccountBox = document.getElementById("fsm_login_account_box_container");
@@ -118,15 +131,12 @@
 			}				
 		};
 		
-		window.addEventListener("load", () => {
-		  history.replaceState(null, "", window.location.href);				  
-		  history.pushState(null, "", window.location.href);
-		  window.addEventListener("popstate", (event) => {
-		    history.pushState(null, "", window.location.href);
-		  });
-		});	            
-		
-		
+		         
+		var errorStatus  = document.getElementById("vResponse_error_errorName").value;						
+		var errorMessage = document.getElementById("vResponse_error_message").value;
+		if(errorStatus != "" || errorMessage != ""){
+			toastr.warning(errorMessage,errorStatus, {closeButton: !0,tapToDismiss: !1});	
+		}
 		
 	</script>
 

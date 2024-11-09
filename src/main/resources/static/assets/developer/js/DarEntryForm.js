@@ -170,6 +170,8 @@ function showDarEntryForm(showType){
 		if(showType != "edit"){
 			getUUIDForDarDetails();	
 		}		
+				
+		createOptionTagInSelectTag("fsm_dar_detail_statusToVisit",dar_StatusToVisitArrayString);
     }catch(exp){        
 		toastr.error(exp,"Error", {closeButton: !0,tapToDismiss: !1});
     }

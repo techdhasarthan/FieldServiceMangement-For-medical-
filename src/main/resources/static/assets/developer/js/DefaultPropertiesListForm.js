@@ -34,7 +34,7 @@ function showDefaultPropertiesListForm(backMethod){
         hideAllLayer();
         var containerId = "defaultProperties_list_form";         
         document.getElementById(containerId).style.display = "block";
-		if(backMethod != "true"){
+		if(backMethod != "true"){			
 			getDefaultPropertiesList(containerId);	
 		}		
     }catch(exp){
@@ -60,8 +60,9 @@ async function populateDefaultPropertiesListVResponse(vResponse,containerId){
 		var editFunction = "editDefaultPropertiesDetails(this)";
 		var deleteFunction = "deleteDefaultPropertiesDetails(this)";
 		var tableId = containerId+"_table_id";		
-		if(dataArray.length > 0){	
-			document.getElementById("defaultProperties_list_table_container").innerHTML = createDataTable(vResponse,editFunction,deleteFunction,tableId);
+			
+		document.getElementById("defaultProperties_list_table_container").innerHTML = createDataTable(vResponse,editFunction,deleteFunction,tableId);
+		if(dataArray.length > 0){
 			await $("#"+tableId).DataTable({
 			                "searching": true,  
 			                "paging": true,     

@@ -20,24 +20,24 @@ public class ProjectErrorController implements ErrorController {
 
             if (statusCode == 404) {
             	System.out.println("404 Error");
-                model.addAttribute("error", "404 - Not Found");
+                model.addAttribute("errorName", "404 - Not Found / Session out");
                 model.addAttribute("message", "The page you are looking for does not exist.");
-                return "error/404";
+                return "fsmLogin";
             } else if (statusCode == 405) {
             	System.out.println("405 Error");
-                model.addAttribute("error", "405 - Method Not Allowed");
+                model.addAttribute("errorName", "405 - Method Not Allowed / Session out");
                 model.addAttribute("message", "The HTTP method is not allowed.");
-                return "error/405";
+                return "fsmLogin";
             } else if (statusCode == 500) {
             	System.out.println("500 Error");
-                model.addAttribute("error", "500 - Internal Server Error");
+                model.addAttribute("errorName", "500 - Internal Server Error/ Session out");
                 model.addAttribute("message", "An unexpected error occurred on the server.");
-                return "error/500";
+                return "fsmLogin";
             }
         }
-
-        model.addAttribute("error", "Unknown Error");
+        System.out.println("Unknown Error");
+        model.addAttribute("errorName", "Unknown Error / Session out");
         model.addAttribute("message", "An unexpected error occurred.");
-        return "error/error";
+        return "fsmLogin";
     }
 }
