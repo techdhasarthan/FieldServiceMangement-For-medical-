@@ -146,18 +146,16 @@ async function populateEstimationListVResponse(vResponse,containerId){
 				var deleteFunction = "deleteEstimationDetails(this)";
 				selectRecordStr = "";
 				var idField = "ID";
-				var imageOrStatusKeyJsonObj = {							
-				};
-				var statusClassMapping = {					
-				};
+				var imageOrStatusKeyJsonObj = {};
+				var statusClassMapping = {};
 				var selectOptionsMapping = {
 					"Register Status": estimation_ApprovalStatusArrayString.split(",")
 				};
 				
-				var selectOptionsBasedOnChangeFunciton = "updateEstimationDetailsInTableRow(this)";
+				var selectOptionsBasedOnChangeFunction = "updateEstimationDetailsInTableRow(this)";
 				
 				var tableId = containerId+"_table_id";		
-				document.getElementById("est_list_table_container").innerHTML = await createDataTableWithCheckboxEdit_Delete_DropDown(vResponse,exportFunction, editFunction, deleteFunction, tableId, selectRecordStr, idField, imageOrStatusKeyJsonObj, statusClassMapping, selectOptionsMapping,selectOptionsBasedOnChangeFunciton);
+				document.getElementById("est_list_table_container").innerHTML = await createDataTableWithCheckboxEdit_Delete_DropDown(vResponse,exportFunction, editFunction, deleteFunction, tableId, selectRecordStr, idField, imageOrStatusKeyJsonObj, statusClassMapping, selectOptionsMapping,selectOptionsBasedOnChangeFunction);
 				if(dataArray.length > 0){
 					await $("#"+tableId).DataTable({				
 					                "searching": true,  

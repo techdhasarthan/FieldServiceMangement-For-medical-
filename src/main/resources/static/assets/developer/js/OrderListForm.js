@@ -203,15 +203,15 @@ async function populateOrderListVResponse(vResponse,containerId){
 				status:"Register Status"
 			};
 			var statusClassMapping = {
-				"Payment Confirmated":"badge badge-subtle-info"
+				"Partial Payment":"badge badge-subtle-info"
 				,"Cancel Order":"badge badge-subtle-danger"
-				,"Payment Received":"badge badge-subtle-success"
+				,"Payment Confirmed":"badge badge-subtle-success"
 				,"New Order":"badge badge-subtle-warning"
 			};
 			var selectOptionsMapping = {};
-			var selectOptionsBasedOnChangeFunciton = "";
+			var selectOptionsBasedOnChangeFunction = "";
 			var tableId = containerId+"_table_id";		
-			document.getElementById("order_list_table_container").innerHTML = await await createDataTableWithCheckboxEdit_Delete_DropDown(vResponse,exportFunction, editFunction, deleteFunction, tableId, selectRecordStr, idField, imageOrStatusKeyJsonObj, statusClassMapping, selectOptionsMapping,selectOptionsBasedOnChangeFunciton);
+			document.getElementById("order_list_table_container").innerHTML = await await createDataTableWithCheckboxEdit_Delete_DropDown(vResponse,exportFunction, editFunction, deleteFunction, tableId, selectRecordStr, idField, imageOrStatusKeyJsonObj, statusClassMapping, selectOptionsMapping,selectOptionsBasedOnChangeFunction);
 			if(dataArray.length > 0){
 				await $("#"+tableId).DataTable({				
 				                "searching": true,  

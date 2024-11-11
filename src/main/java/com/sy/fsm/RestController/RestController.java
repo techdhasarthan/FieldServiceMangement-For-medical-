@@ -47,6 +47,7 @@ import com.sy.fsm.Model.MobileEstimationProductDetails;
 import com.sy.fsm.Model.MobileOrderProductDetails;
 import com.sy.fsm.Model.OrderDetails;
 import com.sy.fsm.Model.OrderProductDetails;
+import com.sy.fsm.Model.PaymentDetails;
 import com.sy.fsm.Model.ProductDetails;
 import com.sy.fsm.Model.UserDetails;
 import com.sy.fsm.Repository.CategoryDetailsRepository;
@@ -57,6 +58,7 @@ import com.sy.fsm.Repository.EstimationDetailsRepository;
 import com.sy.fsm.Repository.EstimationProductDetailsRepository;
 import com.sy.fsm.Repository.OrderDetailsRepository;
 import com.sy.fsm.Repository.OrderProductDetailsRepository;
+import com.sy.fsm.Repository.PaymentDetailsRepository;
 import com.sy.fsm.Repository.ProductDetailsRepository;
 import com.sy.fsm.Repository.UserDetailsRepository;
 
@@ -107,6 +109,9 @@ public class RestController {
 	
 	@Autowired
 	DefaultPropertiesRepository defaultPropertiesRepository;
+	
+	@Autowired
+	PaymentDetailsRepository paymentDetailsRepository ;
         
     
     @RequestMapping(value = "/fsm/getCategoryDetailsList", method = RequestMethod.POST, consumes="application/json")
@@ -935,76 +940,159 @@ public class RestController {
 		}
 		
 		/******************************************************update****************************************************/
-		@RequestMapping(value = "/fsm/updateOrderDetails", method = RequestMethod.POST, consumes = "application/json")
-		public String updateOrderDetails(@RequestBody String payload) {
-		    String vResponse = "{\"status\":\"false\"}";
-		    try {
-		        System.out.println("/fsm/updateOrderDetails:::::::" + payload);	        
-		        ObjectMapper mapper = new ObjectMapper();
-		        OrderDetails newDetails = mapper.readValue(payload, OrderDetails.class);	        
-		        UUID id = newDetails.getId();	        
-		        if (!newDetails.getOrderNo().equalsIgnoreCase("")) {	            
-		            Optional<OrderDetails> existingRecord = orderDetailsRepository.findById(newDetails.getId());
-		            if (existingRecord.isPresent()) {		               
-		                OrderDetails orderDetails = existingRecord.get();
-		                orderDetails.seteNo(newDetails.geteNo());
-		                orderDetails.setEstNo(newDetails.getEstNo());
-		                orderDetails.setOrderNo(newDetails.getOrderNo());
-		                orderDetails.setSoNo(newDetails.getSoNo());
-		                orderDetails.setDdNo(newDetails.getDdNo());
-		                orderDetails.setCustomerName(newDetails.getCustomerName());
-		                orderDetails.setOrderProcessDate(newDetails.getOrderProcessDate());
-		                orderDetails.setRepCode(newDetails.getRepCode());
-		                orderDetails.setBillingName(newDetails.getBillingName());
-		                orderDetails.setBillingAddress(newDetails.getBillingAddress());
-		                orderDetails.setCustomerCity(newDetails.getCustomerCity());
-		                orderDetails.setCustomerPinCode(newDetails.getCustomerPinCode());
-		                orderDetails.setCustomerPhone(newDetails.getCustomerPhone());
-		                orderDetails.setCustomerEmail(newDetails.getCustomerEmail());
-		                orderDetails.setDeliveryCity(newDetails.getDeliveryCity());
-		                orderDetails.setDemoPlan(newDetails.getDemoPlan());
-		                orderDetails.setPaymentCharges(newDetails.getPaymentCharges());
-		                orderDetails.setPaymentTermDate(newDetails.getPaymentTermDate());
-		                orderDetails.setWarranty(newDetails.getWarranty());
-		                orderDetails.setPanAndGst(newDetails.getPanAndGst());
-		                orderDetails.setDemoDate(newDetails.getDemoDate());
-		                orderDetails.setDeliveryAddress(newDetails.getDeliveryAddress());
-		                orderDetails.setDeliveryPinCode(newDetails.getDeliveryPinCode());
-		                orderDetails.setExpectedDate(newDetails.getExpectedDate());
-		                orderDetails.setShipModeName(newDetails.getShipModeName());
-		                orderDetails.setRemarks(newDetails.getRemarks());
-		                orderDetails.setItsHaveDiscount(newDetails.getItsHaveDiscount());
-		                orderDetails.setDiscountEstimate(newDetails.getDiscountEstimate());
-		                orderDetails.setDemoPieceEstimate(newDetails.getDemoPieceEstimate());
-		                orderDetails.setStockClearanceEstimate(newDetails.getStockClearanceEstimate());
-		                orderDetails.setDiscountAmount(newDetails.getDiscountAmount());
-		                orderDetails.setTotalProductAmount(newDetails.getTotalProductAmount());
-		                orderDetails.setGst(newDetails.getGst());
-		                orderDetails.setDeliveryCharges(newDetails.getDeliveryCharges());
-		                orderDetails.setTotalAmount(newDetails.getTotalAmount());
-		                orderDetails.setLessAdvance(newDetails.getLessAdvance());
-		                orderDetails.setBalance(newDetails.getBalance());
-		                orderDetails.setRegisterStatus(newDetails.getRegisterStatus());
-		                orderDetails.setCreatedDate(newDetails.getCreatedDate());
-		                orderDetails.setCreatedBy(newDetails.getCreatedBy());
-		                orderDetails.setPaymentMode(newDetails.getPaymentMode());
-		                orderDetailsRepository.save(orderDetails);
-		                vResponse = "{\"status\":\"true\"}";
-		            }else {
-			        	System.out.println("newRecord");
-			        	newDetails.setId(UUID.randomUUID());	
-			        	newDetails.setOrderNo(orderDetailsRepository.generateOrderSequence());
-			        	orderDetailsRepository.save(newDetails);
-			        	vResponse = "{\"status\":\"true\"}";
-			        }
-		        }
-		    } catch (Exception e) {
-		        e.printStackTrace();
-		        vResponse = "{\"status\":\"false\", \"message\":\"An error occurred.\"}";
-		    }
-		    System.out.println("VResponse :::" + vResponse);
-		    return vResponse;
-		}
+        @RequestMapping(value = "/fsm/updateOrderDetails", method = RequestMethod.POST, consumes = "application/json")
+        public String updateOrderDetails(@RequestBody String payload) {
+            String vResponse = "{\"status\":\"false\"}";
+            try {
+                System.out.println("/fsm/updateOrderDetails:::::::" + payload);         
+                ObjectMapper mapper = new ObjectMapper();
+                OrderDetails newDetails = mapper.readValue(payload, OrderDetails.class);            
+                UUID id = newDetails.getId();           
+                if (!newDetails.getOrderNo().equalsIgnoreCase("")) {                
+                    Optional<OrderDetails> existingRecord = orderDetailsRepository.findById(newDetails.getId());
+                    if (existingRecord.isPresent()) {                      
+                        OrderDetails orderDetails = existingRecord.get();
+                        orderDetails.seteNo(newDetails.geteNo());
+                        orderDetails.setEstNo(newDetails.getEstNo());
+                        orderDetails.setOrderNo(newDetails.getOrderNo());
+                        orderDetails.setSoNo(newDetails.getSoNo());
+                        orderDetails.setDdNo(newDetails.getDdNo());
+                        orderDetails.setCustomerName(newDetails.getCustomerName());
+                        orderDetails.setOrderProcessDate(newDetails.getOrderProcessDate());
+                        orderDetails.setRepCode(newDetails.getRepCode());
+                        orderDetails.setBillingName(newDetails.getBillingName());
+                        orderDetails.setBillingAddress(newDetails.getBillingAddress());
+                        orderDetails.setCustomerCity(newDetails.getCustomerCity());
+                        orderDetails.setCustomerPinCode(newDetails.getCustomerPinCode());
+                        orderDetails.setCustomerPhone(newDetails.getCustomerPhone());
+                        orderDetails.setCustomerEmail(newDetails.getCustomerEmail());
+                        orderDetails.setDeliveryCity(newDetails.getDeliveryCity());
+                        orderDetails.setDemoPlan(newDetails.getDemoPlan());
+                        orderDetails.setPaymentCharges(newDetails.getPaymentCharges());
+                        orderDetails.setPaymentTermDate(newDetails.getPaymentTermDate());
+                        orderDetails.setWarranty(newDetails.getWarranty());
+                        orderDetails.setPanAndGst(newDetails.getPanAndGst());
+                        orderDetails.setDemoDate(newDetails.getDemoDate());
+                        orderDetails.setDeliveryAddress(newDetails.getDeliveryAddress());
+                        orderDetails.setDeliveryPinCode(newDetails.getDeliveryPinCode());
+                        orderDetails.setExpectedDate(newDetails.getExpectedDate());
+                        orderDetails.setShipModeName(newDetails.getShipModeName());
+                        orderDetails.setRemarks(newDetails.getRemarks());
+                        orderDetails.setItsHaveDiscount(newDetails.getItsHaveDiscount());
+                        orderDetails.setDiscountEstimate(newDetails.getDiscountEstimate());
+                        orderDetails.setDemoPieceEstimate(newDetails.getDemoPieceEstimate());
+                        orderDetails.setStockClearanceEstimate(newDetails.getStockClearanceEstimate());
+                        orderDetails.setDiscountAmount(newDetails.getDiscountAmount());
+                        orderDetails.setTotalProductAmount(newDetails.getTotalProductAmount());
+                        orderDetails.setGst(newDetails.getGst());
+                        orderDetails.setDeliveryCharges(newDetails.getDeliveryCharges());
+                        orderDetails.setTotalAmount(newDetails.getTotalAmount());
+                        orderDetails.setLessAdvance(newDetails.getLessAdvance());
+                        orderDetails.setBalance(newDetails.getBalance());
+                        orderDetails.setRegisterStatus(newDetails.getRegisterStatus());
+                        orderDetails.setCreatedDate(newDetails.getCreatedDate());
+                        orderDetails.setCreatedBy(newDetails.getCreatedBy());
+                        orderDetails.setPaymentMode(newDetails.getPaymentMode());
+                        orderDetailsRepository.save(orderDetails);
+                        vResponse = "{\"status\":\"true\"}";
+                        if (newDetails.getRegisterStatus().equalsIgnoreCase("Payment Confirmed")) {
+                        	System.out.println("Old Order to new Payment");
+	                        Optional<PaymentDetails> existingPaymentRecord = paymentDetailsRepository.findByEstNo(newDetails.getEstNo());
+	                        if (existingPaymentRecord.isPresent()) {                            
+	                            System.out.println("existing Payment Record found");
+	                            updatePaymentDetailsInTableRow(existingPaymentRecord.get(), newDetails, newDetails.getCreatedDate(), newDetails.getCreatedBy());                            
+	                            vResponse = "{\"status\":\"true\"}";    
+	                            
+	                        } else {
+	                            System.out.println("new Payment Record Created");
+	                            PaymentDetails paymentDetails = new PaymentDetails();                           
+	                            paymentDetails.setId(newDetails.getId());
+	                            updatePaymentDetailsInTableRow(paymentDetails, newDetails, newDetails.getCreatedDate(), newDetails.getCreatedBy());
+	                            paymentDetailsRepository.save(paymentDetails);                                                                                 
+	                            vResponse = "{\"status\":\"true\"}";                               
+	                        }
+	                        
+	                    }
+                    }else {
+                        System.out.println("newRecord");
+                        newDetails.setId(UUID.randomUUID());    
+                        newDetails.setOrderNo(orderDetailsRepository.generateOrderSequence());
+                        orderDetailsRepository.save(newDetails);
+                        vResponse = "{\"status\":\"true\"}";
+                        if (newDetails.getRegisterStatus().equalsIgnoreCase("Payment Confirmed")) {  
+                        	System.out.println("New Order to new Payment");
+	                        Optional<PaymentDetails> existingPaymentRecord = paymentDetailsRepository.findByEstNo(newDetails.getEstNo());
+	                        if (existingPaymentRecord.isPresent()) {                            
+	                            System.out.println("existing Payment Record found");
+	                            updatePaymentDetailsInTableRow(existingPaymentRecord.get(), newDetails, newDetails.getCreatedDate(), newDetails.getCreatedBy());                            
+	                            vResponse = "{\"status\":\"true\"}";    
+	                            
+	                        } else {
+	                            System.out.println("new Payment Record Created");
+	                            PaymentDetails paymentDetails = new PaymentDetails();                           
+	                            paymentDetails.setId(newDetails.getId());
+	                            updatePaymentDetailsInTableRow(paymentDetails, newDetails, newDetails.getCreatedDate(), newDetails.getCreatedBy());
+	                            paymentDetailsRepository.save(paymentDetails);                                                                                 
+	                            vResponse = "{\"status\":\"true\"}";                               
+	                        }
+	                        
+	                    }
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                vResponse = "{\"status\":\"false\", \"message\":\"An error occurred.\"}";
+            }
+            System.out.println("VResponse :::" + vResponse);
+            return vResponse;
+        }
+
+
+
+        
+        private PaymentDetails updatePaymentDetailsInTableRow(PaymentDetails paymentDetails, OrderDetails newDetails, Timestamp createdDate, String createdBy) {
+            paymentDetails.seteNo("");
+            paymentDetails.setEstNo(newDetails.getEstNo());
+            paymentDetails.setOrderNo(newDetails.getOrderNo());
+            paymentDetails.setSoNo("");
+            paymentDetails.setDdNo("");
+            paymentDetails.setCustomerName(newDetails.getCustomerName());
+            paymentDetails.setOrderProcessDate(new Timestamp(System.currentTimeMillis()));
+            paymentDetails.setRepCode(newDetails.getRepCode());
+            paymentDetails.setBillingName("");
+            paymentDetails.setBillingAddress(newDetails.getBillingAddress());
+            paymentDetails.setCustomerCity(newDetails.getCustomerCity());
+            paymentDetails.setCustomerPinCode(newDetails.getCustomerPinCode());
+            paymentDetails.setCustomerPhone(newDetails.getCustomerPhone());
+            paymentDetails.setCustomerEmail(newDetails.getCustomerEmail());
+            paymentDetails.setDeliveryCity(newDetails.getDeliveryCity());
+            paymentDetails.setDemoPlan("");
+            paymentDetails.setPaymentCharges("");
+            paymentDetails.setPaymentTermDate(null);
+            paymentDetails.setWarranty(newDetails.getWarranty());
+            paymentDetails.setPanAndGst(newDetails.getPanAndGst());
+            paymentDetails.setDemoDate(null);
+            paymentDetails.setDeliveryAddress(newDetails.getDeliveryAddress());
+            paymentDetails.setDeliveryPinCode(newDetails.getDeliveryPinCode());
+            paymentDetails.setExpectedDate(null);
+            paymentDetails.setShipModeName("");
+            paymentDetails.setRemarks(newDetails.getRemarks());
+            paymentDetails.setItsHaveDiscount(newDetails.getItsHaveDiscount());
+            paymentDetails.setDiscountEstimate(newDetails.getDiscountEstimate());
+            paymentDetails.setDemoPieceEstimate(newDetails.getDemoPieceEstimate());
+            paymentDetails.setStockClearanceEstimate(newDetails.getStockClearanceEstimate());
+            paymentDetails.setDiscountAmount(newDetails.getDiscountAmount());
+            paymentDetails.setTotalProductAmount(newDetails.getTotalAmount());
+            paymentDetails.setGst(newDetails.getGst());
+            paymentDetails.setDeliveryCharges(newDetails.getDeliveryCharges());
+            paymentDetails.setTotalAmount(newDetails.getTotalAmount());
+            paymentDetails.setLessAdvance("");
+            paymentDetails.setBalance("");
+            paymentDetails.setRegisterStatus(newDetails.getRegisterStatus());
+            paymentDetails.setCreatedDate(createdDate);
+            paymentDetails.setCreatedBy(createdBy);
+            return paymentDetailsRepository.save(paymentDetails);
+        }
 		
 		@RequestMapping(value = "/fsm/editOrderDetails", method = RequestMethod.POST, consumes="application/json")
 		public String editOrderDetails(@RequestBody String payload) {
@@ -1951,5 +2039,153 @@ public class RestController {
 	        return vResponse;
 	    }
 
+	    @RequestMapping(value = "/fsm/getPaymentDetailsList", method = RequestMethod.POST, consumes="application/json")
+		public String getPaymentDetailsList(@RequestBody String payload) {
+			String vResponse =  "{\"status\":\"false\"}";
+			try {
+				System.out.println("/fsm/getPaymentDetailsList:::::::");
+				JSONObject jObj = new JSONObject(payload);
+				String userId = jObj.getString("User ID");				
+				String teamMemberIds = userDetailsRepository.getUserBasedTeamMemberUserIds(userId);
+				System.out.println(teamMemberIds);
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+				ObjectMapper mapper = new ObjectMapper();
+				List<PaymentDetails> detailsList = paymentDetailsRepository.getFSMUserIdsBasedPaymentDetailsList(teamMemberIds);
+				if(detailsList.size() > 0) {
+					mapper.setDateFormat(sdf);
+					String sourceString = mapper.writeValueAsString(detailsList);
+					vResponse = "{\"status\":\"true\",\"data\":"+sourceString+"}";					
+				}
+				
+			}catch(Exception e4) {
+				e4.printStackTrace();
+			}
+			System.out.println(vResponse);
+		    return vResponse;
+		}
+	    
+	    @RequestMapping(value = "/fsm/getFilterPaymentDetailsList", method = RequestMethod.POST, consumes = "application/json")
+		public String getFilterPaymentDetailsList(@RequestBody String payload) {
+		    String vResponse = "{\"status\":\"false\"}";
+		    try {
+		        System.out.println("/fsm/getFilterPaymentDetailsList:::::::" + payload);
+		        JSONObject jObj = new JSONObject(payload);
+
+		        String eNo = jObj.optString("eNo", null);
+		        String estNo = jObj.optString("estNo", null);
+		        String orderNo = jObj.optString("orderNo", null);
+		        String soNo = jObj.optString("soNo", null);
+		        String ddNo = jObj.optString("ddNo", null);
+		        String customerName = jObj.optString("customerName", null);
+
+		        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+		        Date orderPerformFromDate = jObj.has("orderPerformFromDate") && !jObj.isNull("orderPerformFromDate") 
+		            ? sdf.parse(jObj.getString("orderPerformFromDate")) 
+		            : null;
+		        
+		        Date orderPerformToDate = jObj.has("orderPerformToDate") && !jObj.isNull("orderPerformToDate") 
+		            ? sdf.parse(jObj.getString("orderPerformToDate")) 
+		            : null;
+		        
+		        String repAttD = jObj.optString("repAttD", null);
+		        String mobileNo = jObj.optString("mobileNo", null);
+		        String demoPlan = jObj.optString("demoPlan", null);
+
+		        Date demoFromDate = jObj.has("demoFromDate") && !jObj.isNull("demoFromDate") 
+		            ? sdf.parse(jObj.getString("demoFromDate")) 
+		            : null;
+		        
+		        Date demoToDate = jObj.has("demoToDate") && !jObj.isNull("demoToDate") 
+		            ? sdf.parse(jObj.getString("demoToDate")) 
+		            : null;
+		        
+		        String itsHaveDiscount = jObj.optString("itsHaveDiscount", null);
+		        String orderStatus = jObj.optString("orderStatus", null);
+
+		        Date createdFromDate = jObj.has("createdFromDate") && !jObj.isNull("createdFromDate") 
+		            ? sdf.parse(jObj.getString("createdFromDate")) 
+		            : null;
+		        
+		        Date createdToDate = jObj.has("createdToDate") && !jObj.isNull("createdToDate") 
+		            ? sdf.parse(jObj.getString("createdToDate")) 
+		            : null;
+		        
+		        String createdBy = jObj.optString("createdBy", null);
+
+		        List<PaymentDetails> detailsList = paymentDetailsRepository.getFilteredPaymentDetails(
+		            eNo, estNo, orderNo, soNo, ddNo, customerName,
+		            orderPerformFromDate, orderPerformToDate, repAttD, mobileNo,
+		            demoPlan, demoFromDate, demoToDate, itsHaveDiscount,
+		            orderStatus, createdFromDate, createdToDate, createdBy
+		        );
+
+		        ObjectMapper mapper = new ObjectMapper();
+		        SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+		        mapper.setDateFormat(sdf1);
+		        String sourceString = mapper.writeValueAsString(detailsList);
+		        vResponse = "{\"status\":\"true\",\"data\":"+ sourceString +"}";
+		        System.out.println(vResponse);
+		        
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+		    return vResponse;
+		}
+	    
+	    	    
+	    @RequestMapping(value = "/fsm/updatePaymentDetailsInTableRow", method = RequestMethod.POST, consumes = "application/json")
+	    public String updatePaymentDetailsInTableRow(@RequestBody String payload) {
+	        String vResponse = "{\"status\":\"false\"}";
+	        try {
+	            System.out.println("/fsm/updatePaymentDetailsInTableRow:::::::" + payload);
+	            ObjectMapper mapper = new ObjectMapper();
+	            JSONObject jObj = new JSONObject(payload);
+	            String paymentIdString = jObj.getString("ID");
+	            String paymentStatus = jObj.getString("Payment Status");
+	            String createdDateString = jObj.getString("Created Date");
+	            String createdBy = jObj.getString("Created By");	           
+	            Instant instant = Instant.parse(createdDateString);
+	            Timestamp createdDate = Timestamp.from(instant);
+	            UUID paymentId = UUID.fromString(paymentIdString);
+	            Optional<PaymentDetails> existingRecord = paymentDetailsRepository.findById(paymentId);
+	            if (existingRecord.isPresent()) {
+		            System.out.println("Existing Estimation Record Found");
+	                PaymentDetails newDetails = existingRecord.get();
+	                newDetails.setRegisterStatus(paymentStatus);
+	                newDetails.setCreatedDate(createdDate);
+	                newDetails.setCreatedBy(createdBy);
+	                paymentDetailsRepository.save(newDetails);
+	                vResponse = "{\"status\":\"true\"}";	                
+	            }else {
+	            	vResponse = "{\"status\":\"false\", \"message\":\"An error occurred.\"}";
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            vResponse = "{\"status\":\"false\", \"message\":\"An error occurred.\"}";
+	        }
+	        System.out.println("VResponse :::" + vResponse);
+	        return vResponse;
+	    }
+	    
+	    @RequestMapping(value = "/fsm/deletePaymentDetails", method = RequestMethod.POST, consumes="application/json")
+		public String deletePaymentDetails(@RequestBody String payload) {
+		String vResponse =  "{\"status\":\"false\"}";
+		try {
+			System.out.println("/fsm/deletePaymentDetails::::::::::"+payload);
+			JSONObject jObj = new JSONObject(payload);
+			String idString = jObj.getString("ID");			
+			UUID id = UUID.fromString(idString);			
+			Optional<PaymentDetails> existingDetailsRecord = paymentDetailsRepository.findById(id);			
+			if(existingDetailsRecord.isPresent()){					
+				PaymentDetails ordDetails = existingDetailsRecord.get();
+				paymentDetailsRepository.delete(ordDetails);					
+				vResponse =  "{\"status\":\"true\"}";
+			}
+			System.out.println("vResponse::::"+vResponse);
+		}catch(Exception e4) {
+			e4.printStackTrace();			
+		}
+	    return vResponse;
+	}
 
 }

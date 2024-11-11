@@ -41,9 +41,9 @@ function getOrderEntryForm(showType){
                             <h2 class="page-title">Order Process</h2>
                         </div>                    
                     </div>
-					<div class="row align-items-right">
+					<div class="row align-items-right" id="order_form_export_element_row">
 						<div class="col"></div>
-						<div class="col-auto">
+						<div class="text-end">
 							<select class="btn btn-light float-right btn-rounded" id="order_form_report_type_select">
 								<option>pdf</option>							
 								<option>excel</option>
@@ -261,30 +261,36 @@ function getOrderEntryForm(showType){
                                                                 <td colspan="3">
                                                                     <input type="text" class="form-control" id="fsm_Order_detail_total_amount" name="Total Amount">
                                                                 </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="form-label">Less Advance:</td>
-                                                                <td colspan="4">
-                                                                    <input type="text" class="form-control" id="fsm_Order_detail_less_advance" name="Less Advance">
-                                                                </td>
-                                                                <td class="form-label">Balance:</td>
-                                                                <td colspan="3">
-                                                                    <input type="text" class="form-control" id="fsm_Order_detail_balance" name="Balance">
-                                                                </td>
-                                                            </tr>
+                                                            </tr>                                                            
                                                             <tr>
                                                                 <td colspan="5" class="form-label">Approval Status:</td>
                                                                 <td colspan="4">
-                                                                    <select class="form-select" id="fsm_Order_detail_approval_status" name="Approval Status">
+                                                                    <select class="form-select" id="fsm_Order_detail_approval_status" name="Approval Status" onchange="toggleIfItsPartPay(this.value)">
 																		<option>New Order</option>																	
                                                                         <option>Cancel Order</option>
                                                                         <option>Payment Confirmated</option>    
-                                                                        <option>Payment Received</option>    
+                                                                        <option>Partial Payment</option>    
                                                                     </select>
                                                                 </td>              
                                                             </tr>
                                                         </thead>
                                                     </table>
+													<div class="table-responsive" id="order_table_part_pay_toggle_container" style="display:none;">
+														<table class="table table-center table-hover datatable" >
+															<thead>	
+																<tr>
+	                                                                <td class="form-label">Less Advance:</td>
+	                                                                <td colspan="4">
+	                                                                    <input type="text" class="form-control" id="fsm_Order_detail_less_advance" name="Less Advance">
+	                                                                </td>
+	                                                                <td class="form-label">Balance:</td>
+	                                                                <td colspan="3">
+	                                                                    <input type="text" class="form-control" id="fsm_Order_detail_balance" name="Balance">
+	                                                                </td>
+	                                                            </tr>
+															</thead>
+														</table>
+													</div>
                                                 </div>
                                             </div>
                                         </div>  
@@ -320,7 +326,10 @@ function showOrderEntryForm(showType){
         document.getElementById(containerId).style.display = "block";
 		getProductListToDatalistTagOption();
 		if(showType != 'edit'){
+			document.getElementById("order_form_export_element_row").style.display="none";
 			getUUIDForOrderDetails();	
+		}else{
+			document.getElementById("order_form_export_element_row").style.display="block";
 		}		
 		createOptionTagInSelectTag("fsm_Order_detail_approval_status",order_ApprovalStatusArrayString);				
     }catch(exp){        
@@ -532,9 +541,11 @@ function populateEditOrderDetailsVResponse(vResponseObj){
 		document.getElementById("fsm_Order_detail_less_advance").value = jsonObj['Less Advance'];
 		document.getElementById("fsm_Order_detail_balance").value = jsonObj['Balance'];
 		document.getElementById("fsm_Order_detail_approval_status").value = jsonObj['Register Status'];
+		toggleIfItsPartPay(jsonObj['Register Status']);
 		document.getElementById("fsm_order_detail_payment_mode").value = jsonObj['Payment Mode'] ;
 		document.getElementById("fsm_order_detail_payment_incharges").value = jsonObj['Payment Charges'];
 		document.getElementById("fsm_order_detail_payment_term_date").value = jsonObj['Payment Term Date'];
+		
   		var productsJsonObj = vResponseObj.ordProductData;
         loadOrderProductRowsFromJson(productsJsonObj);  
 		toggleDemoDate(jsonObj['Demo Plan']);                
@@ -879,3 +890,10 @@ function populateExportJasperReportInOrderVResponse(vResponseObj,reportType){
 		}
 };
 
+function toggleIfItsPartPay(status) {
+    if (status === "Partial Payment") {
+        document.getElementById("order_table_part_pay_toggle_container").style.display = "block";		
+    } else {
+		document.getElementById("order_table_part_pay_toggle_container").style.display = "none";
+    }
+};

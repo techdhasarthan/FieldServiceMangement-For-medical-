@@ -11,12 +11,14 @@ function hideAllLayer(){
 	document.getElementById("est_entry_form").style.display ="none";
 	document.getElementById("order_list_form").style.display ="none";
 	document.getElementById("order_entry_form").style.display ="none";
+	document.getElementById("payment_list_form").style.display ="none";
 	document.getElementById("defaultProperties_list_form").style.display ="none";
 	
 	getDefaultPropertyValuesByName("DAR - Status To Visit");
 	getDefaultPropertyValuesByName("Users - User Roles");
 	getDefaultPropertyValuesByName("Estimation - Approval Status");	
-	getDefaultPropertyValuesByName("Order - Approval Status");	
+	getDefaultPropertyValuesByName("Order - Approval Status");
+	getDefaultPropertyValuesByName("Payment - Approval Status");	
 };
 
 
@@ -30,6 +32,7 @@ window.document.body.onload = function(){
 		document.getElementById("dar_list_form").innerHTML = getDarListForm();
 		document.getElementById("est_list_form").innerHTML = getEstimationListForm();
 		document.getElementById("order_list_form").innerHTML = getOrderListForm();
+		document.getElementById("payment_list_form").innerHTML = getPaymentListForm();
 		document.getElementById("defaultProperties_list_form").innerHTML = getDefaultPropertiesListForm();
 		
 		/*getDefaultPropertyValuesByName("Category");

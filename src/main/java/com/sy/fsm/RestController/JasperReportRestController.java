@@ -26,10 +26,12 @@ import com.sy.fsm.Model.DarDetails;
 import com.sy.fsm.Model.EstimationDetails;
 import com.sy.fsm.Model.MobileEstimationDetails;
 import com.sy.fsm.Model.MobileOrderDetails;
+import com.sy.fsm.Model.PaymentDetails;
 import com.sy.fsm.Repository.DarDetailsRepository;
 import com.sy.fsm.Repository.EstimationDetailsRepository;
 import com.sy.fsm.Repository.MobileEstimationDetailsRepository;
 import com.sy.fsm.Repository.MobileOrderDetailsRepository;
+import com.sy.fsm.Repository.PaymentDetailsRepository;
 import com.sy.fsm.RestController.MobileRestController.OrderProductDetailsWrapper;
 
 import net.sf.jasperreports.engine.JREmptyDataSource;
@@ -84,6 +86,9 @@ public class JasperReportRestController {
 	
 	@Autowired
 	MobileOrderDetailsRepository mobileOrderDetailsRepository;
+	
+	@Autowired
+	PaymentDetailsRepository paymentDetailsRepository;
 	
 		
 	/*private Timestamp parseTimestamp(String dateStr) {
@@ -205,12 +210,14 @@ public class JasperReportRestController {
 	public ResponseEntity<Map<String, String>> exportJasperReportInEstimation(@RequestBody String payload) {
 	    Map<String, String> response = new HashMap<>();
 	    try {
+	    	System.out.println("/fsm/exportJasperReportInEstimation:::::"+payload);
 	        JSONObject jobj = new JSONObject(payload);
 	        String reportType = jobj.getString("reportType");
 	        String estNo = jobj.getString("estNo");
 
 	        // Default report path
-	        String mainJasperFilePath = "/Reports/estimation_discount.jasper";
+	        //String mainJasperFilePath = "/Reports/estimation_discount.jasper";
+	        String mainJasperFilePath = "/Reports/estimation_discount_2.jasper";
 	        Optional<MobileEstimationDetails> existingRecord = mobileEstimationDetailsRepository.findByEstNo(estNo);
 	        Map<String, Object> parameters = new HashMap<>();
 
@@ -249,9 +256,13 @@ public class JasperReportRestController {
 	            parameters.put("createdDate", estDetails.getCreatedDate().toString());
 	            parameters.put("createdBy", estDetails.getCreatedBy());
 
-	            mainJasperFilePath = estDetails.getItsHaveDiscount().equalsIgnoreCase("Yes")
+	           /* mainJasperFilePath = estDetails.getItsHaveDiscount().equalsIgnoreCase("Yes")
 	                                 ? "/Reports/estimation_discount.jasper"
-	                                 : "/Reports/estimation_normal.jasper";
+	                                 : "/Reports/estimation_normal.jasper";*/
+	            
+	            mainJasperFilePath = estDetails.getItsHaveDiscount().equalsIgnoreCase("Yes")
+                ? "/Reports/estimation_discount_2.jasper"
+                : "/Reports/estimation_normal_1.jasper";
 	        }
 	        
 	        // Load main report
@@ -286,6 +297,7 @@ public class JasperReportRestController {
 	                response.put("status", "true");
 	                response.put("message", reportType.toUpperCase() + " Report generated successfully.");
 	                response.put("fileName", estNo + "_" + timestamp + fileExtension);
+	                System.out.println("vResponse:::::"+response);
 	                return ResponseEntity.ok(response);
 	            }
 	        }
@@ -300,15 +312,17 @@ public class JasperReportRestController {
 	
 
 	@SuppressWarnings("unchecked")
-	 @PostMapping("/fsm/exportJasperReportInOrder")
+	@PostMapping("/fsm/exportJasperReportInOrder")
     public ResponseEntity<Map<String, String>> exportJasperReportInOrder(@RequestBody String payload) {
         Map<String, String> response = new HashMap<>();
         try {
+        	System.out.println("/fsm/exportJasperReportInOrder:::::"+payload);
             JSONObject jobj = new JSONObject(payload);
             String reportType = jobj.getString("reportType");
             String estNo = jobj.getString("estNo");
 
-            String jasperFilePath = "Reports/fsm_order_main.jasper";
+            //String jasperFilePath = "Reports/fsm_order_main.jasper";
+            String jasperFilePath = "Reports/fsm_main_order_1.jasper";
             Map<String, Object> parameters = new HashMap<>();
 
             Optional<MobileOrderDetails> existingRecord = mobileOrderDetailsRepository.findByEstNo(estNo);
@@ -388,6 +402,110 @@ public class JasperReportRestController {
                 response.put("status", "true");
                 response.put("message", reportType.toUpperCase() + " Report generated successfully.");
                 response.put("fileName", parameters.get("orderNo") + "_" +timestamp+fileExtension);
+                System.out.println("vResponse:::::"+response);
+                return ResponseEntity.ok(response);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.put("status", "false");
+            response.put("error", "File generation failed: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+	
+	
+	@SuppressWarnings("unchecked")
+	@PostMapping("/fsm/exportJasperReportInPayment")
+    public ResponseEntity<Map<String, String>> exportJasperReportInPayment(@RequestBody String payload) {
+        Map<String, String> response = new HashMap<>();
+        try {
+        	System.out.println("/fsm/exportJasperReportInPayment:::::"+payload);
+            JSONObject jobj = new JSONObject(payload);
+            String reportType = jobj.getString("reportType");
+            String estNo = jobj.getString("estNo");
+
+            //String jasperFilePath = "Reports/fsm_order_main.jasper";
+            String jasperFilePath = "Reports/fsm_main_order_1.jasper";
+            Map<String, Object> parameters = new HashMap<>();
+
+            Optional<PaymentDetails> existingRecord = paymentDetailsRepository.findByEstNo(estNo);
+            if (existingRecord.isPresent()) {
+                PaymentDetails orderDetails = existingRecord.get();
+
+                parameters.put("id", orderDetails.getId().toString());
+                parameters.put("eNo", orderDetails.geteNo());
+                parameters.put("estNo", orderDetails.getEstNo());
+                parameters.put("orderNo", orderDetails.getOrderNo());
+                parameters.put("soNo", orderDetails.getSoNo());
+                parameters.put("ddNo", orderDetails.getDdNo());
+                parameters.put("customerName", orderDetails.getCustomerName());
+                parameters.put("orderProcessDate", orderDetails.getOrderProcessDate() != null ? orderDetails.getOrderProcessDate().toString() : "");
+                parameters.put("repCode", orderDetails.getRepCode());
+                parameters.put("billingName", orderDetails.getBillingName());
+                parameters.put("billingAddress", orderDetails.getBillingAddress());
+                parameters.put("customerCity", orderDetails.getCustomerCity());
+                parameters.put("customerPinCode", orderDetails.getCustomerPinCode());
+                parameters.put("customerPhone", orderDetails.getCustomerPhone());
+                parameters.put("customerEmail", orderDetails.getCustomerEmail());
+                parameters.put("deliveryCity", orderDetails.getDeliveryCity());
+                parameters.put("demoPlan", orderDetails.getDemoPlan());
+                parameters.put("paymentCharges", orderDetails.getPaymentCharges());
+                parameters.put("paymentTermDate", orderDetails.getPaymentTermDate() != null ? orderDetails.getPaymentTermDate().toString() : "");
+                parameters.put("warranty", orderDetails.getWarranty());
+                parameters.put("panAndGst", orderDetails.getPanAndGst());
+                parameters.put("demoDate", orderDetails.getDemoDate() != null ? orderDetails.getDemoDate().toString() : "");
+                parameters.put("deliveryAddress", orderDetails.getDeliveryAddress());
+                parameters.put("deliveryPinCode", orderDetails.getDeliveryPinCode());
+                parameters.put("expectedDate", orderDetails.getExpectedDate() != null ? orderDetails.getExpectedDate().toString() : "");
+                parameters.put("shipModeName", orderDetails.getShipModeName());
+                parameters.put("remarks", orderDetails.getRemarks());
+                parameters.put("itsHaveDiscount", orderDetails.getItsHaveDiscount());
+                parameters.put("discountEstimate", orderDetails.getDiscountEstimate());
+                parameters.put("demoPieceEstimate", orderDetails.getDemoPieceEstimate());
+                parameters.put("stockClearanceEstimate", orderDetails.getStockClearanceEstimate());
+                parameters.put("discountAmount", orderDetails.getDiscountAmount());
+                parameters.put("totalProductAmount", orderDetails.getTotalProductAmount());
+                parameters.put("gst", orderDetails.getGst());
+                parameters.put("deliveryCharges", orderDetails.getDeliveryCharges());
+                parameters.put("totalAmount", orderDetails.getTotalAmount());
+                parameters.put("lessAdvance", orderDetails.getLessAdvance());
+                parameters.put("balance", orderDetails.getBalance());
+                parameters.put("registerStatus", orderDetails.getRegisterStatus());
+                parameters.put("createdDate", orderDetails.getCreatedDate() != null ? orderDetails.getCreatedDate().toString() : "");
+                parameters.put("createdBy", orderDetails.getCreatedBy());
+                parameters.put("paymentMode", orderDetails.getPaymentMode());
+            }
+
+            try (InputStream jasperStream = getClass().getClassLoader().getResourceAsStream(jasperFilePath);
+            		Connection connection = dbController.getConnection()) {
+                if (jasperStream == null) {
+                    throw new FileNotFoundException("Main report file not found: " + jasperFilePath);
+                }
+
+                JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, connection);
+
+                String fileExtension = reportType.equalsIgnoreCase("pdf") ? ".pdf" : ".xlsx";
+                String timestamp = String.valueOf(System.currentTimeMillis());
+                String filePath = UPLOAD_DIR + "/Reports/" + parameters.get("orderNo") + "_" +timestamp+ fileExtension;
+                
+                if (reportType.equalsIgnoreCase("pdf")) {
+                    JasperExportManager.exportReportToPdfFile(jasperPrint, filePath);
+                } else {
+                    JRXlsxExporter exporter = new JRXlsxExporter();
+                    exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+                    exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(filePath));
+                    SimpleXlsxReportConfiguration reportConfig = new SimpleXlsxReportConfiguration();
+                    reportConfig.setOnePagePerSheet(false);
+                    reportConfig.setRemoveEmptySpaceBetweenRows(true);
+                    exporter.setConfiguration(reportConfig);
+                    exporter.exportReport();
+                }
+
+                response.put("status", "true");
+                response.put("message", reportType.toUpperCase() + " Report generated successfully.");
+                response.put("fileName", parameters.get("orderNo") + "_" +timestamp+fileExtension);
+                System.out.println("vResponse:::::"+response);
                 return ResponseEntity.ok(response);
             }
         } catch (Exception e) {

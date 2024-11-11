@@ -408,4 +408,120 @@ function createDataTableWithCheckboxEdit_Delete_DropDown(responseData, exportFun
     });
 
     return containerObj.outerHTML;
-}
+};
+
+
+
+function createDataTableWithCheckbox_Delete_DropDown(responseData, exportFunction,deleteFunction, tableId, selectRecordStr, idField, imageOrStatusKeyJsonObj, statusClassMapping, selectOptionsMapping, selectOptionsBasedOnChangeFunction) {
+    var containerObj = document.createElement("table");
+    containerObj.className = "table table-striped table-bordered dt-responsive nowrap w-100 datatable dataTable no-footer";
+    containerObj.id = tableId;
+
+    var containerHeaderObj = document.createElement("thead");
+    containerHeaderObj.className = "thead-light";
+    var containerBodyObj = document.createElement("tbody");
+
+    containerObj.appendChild(containerHeaderObj);
+    containerObj.appendChild(containerBodyObj);
+
+    var actualData = responseData.data;
+
+    const createRow = () => document.createElement("TR");
+
+    const createColumn = (elementName, rowKey, rowValue, className, isHeader = false) => {
+        var rowCell = document.createElement(elementName);
+        rowCell.setAttribute("name", rowKey);
+        if (className) rowCell.className = className;
+
+        if (isHeader) {
+            rowCell.innerHTML = rowValue;
+        } else {
+            if (rowKey === imageOrStatusKeyJsonObj['image']) {
+                rowCell.innerHTML = rowValue 
+                    ? `<img src="/fsm/RetrieveFile/${rowValue}" alt="Profile Image" width="50" height="50" style="border-radius:50px">` 
+                    : `<img src="/assets/img/avatars/user.png" alt="Profile Image" width="50" height="50" style="border-radius:50px">`;
+            } else if (rowKey === imageOrStatusKeyJsonObj['status']) {
+                let highlightClass = statusClassMapping[rowValue] || "";
+                rowCell.innerHTML = highlightClass 
+                    ? `<span class="${highlightClass}" style="font-size:16px;font-weight:bold;">${rowValue}</span>` 
+                    : rowValue;
+            } else if (selectOptionsMapping[rowKey]) {
+                let selectElem = document.createElement("select");
+                selectElem.className = "form-select";
+                selectElem.setAttribute("onchange",selectOptionsBasedOnChangeFunction);             
+                selectOptionsMapping[rowKey].forEach(optionValue => {
+                    let optionElem = document.createElement("option");                    
+                    optionElem.value = optionValue;
+                    optionElem.text = optionValue;
+                    if (optionValue === rowValue) {
+                        optionElem.setAttribute("selected","true");
+                    }
+                    selectElem.appendChild(optionElem);
+                });
+                rowCell.appendChild(selectElem);
+            } else {
+                rowCell.innerHTML = rowValue;
+            }
+        }
+        return rowCell;
+    };
+
+    // Create header row
+    var headerRow = createRow();
+    containerHeaderObj.appendChild(headerRow);
+
+    // Add checkbox header
+    var checkboxHeader = createColumn("TH", "Select", `<input type="checkbox" id="selectAll" onclick="toggleSelectAll()">`, "", true);
+    headerRow.appendChild(checkboxHeader);
+
+    // Add data headers
+    Object.keys(actualData[0]).forEach((prop) => {
+        headerRow.appendChild(createColumn("TH", prop, prop, "", true));
+    });
+
+    headerRow.appendChild(createColumn("TH", "Event Buttons", "", "text-end", true));
+    
+    const createActionButtons = (rowId) => {
+        let exportSelect = document.createElement("select");
+        exportSelect.className = "btn btn-sm text-primary me-2";        
+        exportSelect.innerHTML = '<option>pdf</option><option>excel</option>';
+
+        let exportButton = document.createElement("button");
+        exportButton.className = "btn btn-sm btn-white text-primary me-2";        
+        exportButton.setAttribute("onclick",exportFunction);
+        exportButton.innerHTML = '<i class="fa fa-file-export me-1"></i> Export';                
+
+        let deleteButton = document.createElement("button");
+        deleteButton.className = "btn btn-sm btn-white text-danger me-2";        
+        deleteButton.setAttribute("onclick",deleteFunction);
+        deleteButton.innerHTML = '<i class="far fa-trash-alt me-1"></i> Delete';
+
+        let actionContainer = document.createElement("TD");
+        actionContainer.className = "text-end";
+        actionContainer.append(exportSelect, exportButton, deleteButton);
+
+        return actionContainer;
+    };
+
+    // Populate table rows
+    actualData.forEach((obj) => {
+        var dataRow = createRow();
+        containerBodyObj.appendChild(dataRow);
+
+        // Checkbox column
+        let isChecked = selectRecordStr.includes(obj[idField]) ? 'checked' : '';
+        dataRow.appendChild(createColumn("TD", "Select", `<input type="checkbox" class="rowCheckbox" name="${obj[idField]}" ${isChecked} onclick="toggleSelection('${obj[idField]}')">`, ""));
+
+        // Data columns
+        Object.entries(obj).forEach(([key, value]) => {
+            dataRow.appendChild(createColumn("TD", key, value, ""));
+        });
+
+        // Action buttons column
+        dataRow.appendChild(createActionButtons(obj[idField]));
+    });
+
+    return containerObj.outerHTML;
+};
+
+

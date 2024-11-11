@@ -219,17 +219,18 @@ function getEstimationEntryForm(showType){
 								                                                  
 								                                </tr>
 								                                
-																<tr>
-																	<td colspan="5" class="form-label">GST:</td>
-								                                    <td colspan="3">
-								                                    	<input type="text" class="form-control" id="fsm_Estimation_detail_gst" name="GST">
-								                                    </td>                    
-											                	</tr>  
+																  
 															</tbody>
 														</table>
 														</div>
 														<table class="table table-center table-hover datatable">
-															<thead class="thead-light">     
+															<thead class="thead-light">
+															    <tr>
+																	<td colspan="5" class="form-label">GST:</td>
+								                                    <td colspan="3">
+								                                    	<input type="text" class="form-control" id="fsm_Estimation_detail_gst" name="GST">
+								                                    </td>                    
+											                	</tr>     
 								                                <tr>
 								                                   <td colspan="5" class="form-label">Delivery Charges:</td>
 								                                    <td colspan="3">

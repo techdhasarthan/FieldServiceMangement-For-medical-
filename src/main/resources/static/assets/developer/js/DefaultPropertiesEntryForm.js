@@ -3,6 +3,7 @@ var dar_StatusToVisitArrayString = "";
 var users_UserRolesArrayString = "";
 var estimation_ApprovalStatusArrayString = "";
 var order_ApprovalStatusArrayString= "";
+var payment_ApprovalStatusArrayString="";
 
 function getDefaultPropertiesEntryForm(action){
 	var control = "";
@@ -191,6 +192,8 @@ function populateDefaultPropertyValuesByNameVResponse(vResponseObj,propertyName)
 			estimation_ApprovalStatusArrayString = dataObj['Property Value'];							
 		}else if(propertyName == "Order - Approval Status"){
 			order_ApprovalStatusArrayString = dataObj['Property Value'];			
+		}else if(propertyName == "Payment - Approval Status"){
+			payment_ApprovalStatusArrayString = dataObj['Property Value'];			
 		}
 	}
 };
